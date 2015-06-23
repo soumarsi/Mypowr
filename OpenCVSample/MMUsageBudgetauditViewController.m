@@ -372,7 +372,7 @@
                 //WithObjects:[UIImage imageNamed:@"PlasmaTV"], nil];
                 [staticItemImage addObject:[UIImage imageNamed:@"PlasmaTV"]];
                 [staticItemName addObject:@"Plasma TV"];
-                [staticItemWatt addObject:@"100w"];
+                [staticItemWatt addObject:@"100W"];
             }
             
             NSLog(@"STATIC IMAGE COUNT %lu------ NAME------ %@",(unsigned long)staticItemName.count,staticItemImage);
@@ -413,7 +413,10 @@
                     
                     UILabel *wattLabel = [[UILabel alloc]initWithFrame:CGRectMake(j+27.0f, 7.0f, 50.0f, 20.0f)];
                     wattLabel.backgroundColor = [UIColor clearColor];
-                    wattLabel.text = [NSString stringWithFormat:@"%@",[[ReturnArray objectAtIndex:i] objectForKey:@"wattage"]];
+                    wattLabel.text = [NSString stringWithFormat:@"%@",[staticItemWatt objectAtIndex:i]];
+                    
+                    //---------Remove code comment------/
+//                    wattLabel.text = [NSString stringWithFormat:@"%@",[[ReturnArray objectAtIndex:i] objectForKey:@"wattage"]];
                     wattLabel.font = [UIFont systemFontOfSize:12.0f];
                     wattLabel.textColor = [UIColor whiteColor];
                     [MainScroll addSubview:wattLabel];
@@ -434,8 +437,11 @@
                     TitleLbl.textAlignment=NSTextAlignmentCenter;
                     TitleLbl.adjustsFontSizeToFitWidth=YES;
                     TitleLbl.font=[UIFont systemFontOfSize:13];
+                    [TitleLbl setText:[staticItemName objectAtIndex:i]];
+                    
+                    //---------Remove code comment------/
+//                    [TitleLbl setText:[[ReturnArray objectAtIndex:i] objectForKey:@"title"]];
                     [MainScroll addSubview:TitleLbl];
-                    [TitleLbl setText:[[ReturnArray objectAtIndex:i] objectForKey:@"title"]];
                     
                     plasmatvimg.tag = i;
                     
