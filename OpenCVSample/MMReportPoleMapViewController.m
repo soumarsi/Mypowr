@@ -463,9 +463,16 @@
          CLPlacemark *placemark1 = [placemarks objectAtIndex:0];
          
          //String to address
-         locatedaddress = [[placemark1.addressDictionary valueForKey:@"FormattedAddressLines"] componentsJoinedByString:@", "];
+//         locatedaddress = [[placemark1.addressDictionary valueForKey:@"FormattedAddressLines"] componentsJoinedByString:@", "];
+         locatedaddress = [NSString stringWithFormat:@"%@, %@, %@, %@, %@",placemark1.subThoroughfare,placemark1.thoroughfare,placemark1.locality,placemark1.administrativeArea,placemark1.postalCode];
 
          NSLog(@"LOCATION ADDRESS-------> %@",[placemark1.addressDictionary valueForKey:@"FormattedAddressLines"]);
+         NSLog(@"PLACEMARK1 COUNTRY------> %@",placemark1.country);
+         NSLog(@"PLACEMARK1 POSTAL CODE------> %@",placemark1.postalCode);
+         NSLog(@"PLACEMARK1 throughfare------> %@",placemark1.thoroughfare);
+         NSLog(@"PLACEMARK1 locality------> %@",placemark1.locality);
+         NSLog(@"PLACEMARK1 administrative area------> %@",placemark1.administrativeArea);
+         NSLog(@"PLACEMARK1 sub thorough------> %@",placemark1.subThoroughfare);
          //         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Your location" message:locatedaddress delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil]; [alert show];
 
          loc_label.text=locatedaddress;
