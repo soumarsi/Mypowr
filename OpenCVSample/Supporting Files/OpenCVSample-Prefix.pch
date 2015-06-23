@@ -1,0 +1,45 @@
+#import <Availability.h>
+
+
+#ifndef __IPHONE_3_0
+#warning "This project uses features only available in iOS SDK 3.0 and later."
+#endif
+
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+#endif
+#ifdef _cplusplus
+#import <opencv2/opencv.hpp>
+#endif
+#define RGBCOLOR1(x,y,z,f) [UIColor colorWithRed:(x/1.0f) green:(y/1.0f) blue:(z/1.0f) alpha:f]
+#if !defined(DOMAIN_APP_URL)
+#define DOMAIN_APP_URL @"http://www.esolz.co.in/lab1/Web/myPower/"
+#endif
+
+
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+#define IS_IPHONE_5 (IS_IPHONE && [[UIScreen mainScreen] bounds].size.height == 568.0)
+#define IS_RETINA ([[UIScreen mainScreen] scale] == 2.0)
+
+#define RGBCOLOR(x,y,z,f) [UIColor colorWithRed:(x/255.0f) green:(y/255.0f) blue:(z/255.0f) alpha:f]
+#define  MainScreenHeight [[UIScreen mainScreen]bounds].size.height
+#define  MainScreenWidth  [[UIScreen mainScreen]bounds].size.width
+#define DEGREES_TO_RADIANS(angle) ((angle) / 180.0 * M_PI)
+
+
+#define Iphone5MainScreenHeight 568
+#define Iphone4MainScreenHeight 480
+#define PERCENT_CAL(x) x*100/Iphone5MainScreenHeight
+#define RESPECTIVEInt(x)  Iphone5MainScreenHeight*PERCENT_CAL(x)/100
+#define respective(x)  Iphone4MainScreenHeight*PERCENT_CAL(x)/100
+
+
+#define PARAMH(x) (IS_IPHONE_5)?(RESPECTIVEInt(x)):(respective(x))
+#define CHARACTERS          @" ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+
+#define GLOBALTEXTFONT_Light @"Helvetica Light"
+#define GLOBALTEXTFONT_BOLD @"Helvetica Bold"
+#define GLOBALTEXTFONT @"Helvetica"
