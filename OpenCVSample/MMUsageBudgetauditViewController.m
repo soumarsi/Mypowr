@@ -261,7 +261,7 @@
     
     UIImageView *indicator = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"selectedwatview"]];
     _pickerView.selectionIndicatorView = indicator;
-    [self.view addSubview:_pickerView];
+    [MainView addSubview:_pickerView];
     
     
     UIView *scrollview = [[UIView alloc]initWithFrame:CGRectMake(125.0f, _pickerView.frame.origin.y+_pickerView.frame.size.height-40.0f, 320.0f, 170.0f)];
@@ -424,7 +424,8 @@
                     
                     plasmatvimg = [[UIImageView alloc]initWithFrame:CGRectMake(j, 55.0f, 75.5f, 70.0f)];
                     plasmatvimg.backgroundColor=[UIColor clearColor];
-                    [plasmatvimg sd_setImageWithURL:[NSURL URLWithString:[staticItemImage objectAtIndex:i]] placeholderImage:[UIImage imageNamed:@"NoImage.png"] options:i==0?SDWebImageRefreshCached:0];
+                    [plasmatvimg setImage:[staticItemImage objectAtIndex:i]];
+                    
                     
                     //---------Remove code comment------/
                     
@@ -472,7 +473,6 @@
 - (NSInteger)numberOfElementsInHorizontalPickerView:(V8HorizontalPickerView *)picker {
     
     return [ReturnArray count];
-    
 }
 
 -(void)usage:(UIButton *)sender{
@@ -607,9 +607,16 @@
     
     MMUsageBudgetauditnxtViewController *model = [[MMUsageBudgetauditnxtViewController alloc]init];
     
-    [model setSelectedDeviceID:[[[ReturnArray objectAtIndex:sender.view.tag] objectForKey:@"id"] intValue]];
-    [model setDeviceTitle:[[ReturnArray objectAtIndex:sender.view.tag] objectForKey:@"title"]];
-    [model setImageUrlFromPreviuosPage:[[ReturnArray objectAtIndex:sender.view.tag] objectForKey:@"device_image_thumb"]];
+    //------------Remove comment out later-----PK-----//
+    
+//    [model setSelectedDeviceID:[[[ReturnArray objectAtIndex:sender.view.tag] objectForKey:@"id"] intValue]];
+//    [model setDeviceTitle:[[ReturnArray objectAtIndex:sender.view.tag] objectForKey:@"title"]];
+//    [model setImageUrlFromPreviuosPage:[[ReturnArray objectAtIndex:sender.view.tag] objectForKey:@"device_image_thumb"]];
+    
+    [model setSelectedDeviceID:[[staticItemName objectAtIndex:sender.view.tag] intValue]];
+    [model setDeviceTitle:[staticItemName objectAtIndex:sender.view.tag]];
+    [model setImageUrlFromPreviuosPage:[staticItemImage objectAtIndex:sender.view.tag]];
+
     
     [self.navigationController pushViewController:model animated:NO];
 }

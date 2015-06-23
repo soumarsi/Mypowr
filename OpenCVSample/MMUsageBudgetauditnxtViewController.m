@@ -196,37 +196,35 @@
     
     ////end of dynamic month label
     
-    
-    
-    
     ////////////////////////////////////////////
     
       
-    UIImageView *questionmark = [[UIImageView alloc]initWithFrame:CGRectMake(150.0f, 270.0f, 19.0f, 19.0f)];
-    [questionmark setImage:[UIImage imageNamed:@"Questionmarkimg"]];
-    [MainView addSubview:questionmark];
+//    UIImageView *questionmark = [[UIImageView alloc]initWithFrame:CGRectMake(150.0f, 270.0f, 19.0f, 19.0f)];
+//    [questionmark setImage:[UIImage imageNamed:@"Questionmarkimg"]];
+//    [MainView addSubview:questionmark];
     
     
-    UILabel *wattage = [[UILabel alloc]initWithFrame:CGRectMake(110.0f, 290.0f, 100.0f, 40.0f)];
-    [wattage setText:@"Wattage"];
-    [wattage setTextAlignment:NSTextAlignmentCenter];
-    [wattage setTextColor:[UIColor whiteColor]];
-    [wattage setFont:[UIFont fontWithName:GLOBALTEXTFONT size:20]];
-    [wattage setBackgroundColor:[UIColor clearColor]];
-    [MainView addSubview:wattage];
+//    UILabel *wattage = [[UILabel alloc]initWithFrame:CGRectMake(110.0f, DollarIntLbl.frame.origin.x+DollarIntLbl.frame.size.height+75.0f, 100.0f, 40.0f)];
+//    [wattage setText:@"Wattage"];
+//    [wattage setTextAlignment:NSTextAlignmentCenter];
+//    [wattage setTextColor:[UIColor whiteColor]];
+//    [wattage setFont:[UIFont fontWithName:GLOBALTEXTFONT size:20]];
+//    [wattage setBackgroundColor:[UIColor redColor]];
+//    [MainView addSubview:wattage];
     
     
-    UIView *scrollview = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 330.0f, 320.0f, 60.0f)];
-    [scrollview setBackgroundColor:[UIColor clearColor]];
-    [MainView addSubview:scrollview];
+//    UIView *scrollview = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 330.0f, 320.0f, 60.0f)];
+//    [scrollview setBackgroundColor:[UIColor clearColor]];
+//    [MainView addSubview:scrollview];
     
-    //scrollview................
-    MainScroll = [[UIScrollView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 60.0f)];
-    MainScroll.userInteractionEnabled=YES;
-    MainScroll.scrollEnabled=YES;
-    MainScroll.showsHorizontalScrollIndicator=YES;
-    //MainScroll.contentSize=CGSizeMake(1500.0f, 6.0f);
-    [scrollview addSubview:MainScroll];
+    //---------------PK------Commented//
+//    //scrollview................
+//    MainScroll = [[UIScrollView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 60.0f)];
+//    MainScroll.userInteractionEnabled=YES;
+//    MainScroll.scrollEnabled=YES;
+//    MainScroll.showsHorizontalScrollIndicator=YES;
+//    //MainScroll.contentSize=CGSizeMake(1500.0f, 6.0f);
+//    [scrollview addSubview:MainScroll];
     
     
     watarray = [[NSMutableArray alloc]init];
@@ -294,11 +292,11 @@
     //    }
     //    MainScroll.contentSize=CGSizeMake(i,2);
     
-    CGFloat margin = 7.0f;
+    CGFloat margin = 1.0f;
     CGFloat width = (self.view.bounds.size.width - (margin * 2.0f));
     CGFloat pickerHeight = 50.0f;
     CGFloat x = margin;
-    CGFloat y = 325.0f;
+    CGFloat y = DollarIntLbl.frame.origin.x+DollarIntLbl.frame.size.height+75.0f;//325.0f;
     CGRect tmpFrame = CGRectMake(x, y, width, pickerHeight);
     
     _pickerView = [[V8HorizontalPickerView alloc] initWithFrame:tmpFrame];
@@ -310,54 +308,74 @@
     _pickerView.tag = 1;
     _pickerView.elementFont = [UIFont boldSystemFontOfSize:14.0f];
     _pickerView.selectionPoint = CGPointMake(160, 0);
-    
+    [self.view addSubview:_pickerView];
     
     
     UIImageView *indicator = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"selectedwatview"]];
     _pickerView.selectionIndicatorView = indicator;
-    [self.view addSubview:_pickerView];
     
-    NSArray *ImageTitleArray=[[NSArray alloc]initWithObjects:_ImageUrlFromPreviuosPage,nil];
+    
+//    NSArray *ImageTitleArray=[[NSArray alloc]initWithObjects:_ImageUrlFromPreviuosPage,nil];
     CGRect PreFrame=CGRectMake(MainScreenWidth/2-50, 0, 0, 0);
-    ProductContainerScroll=[[UIScrollView alloc]initWithFrame:CGRectMake(0, scrollview.frame.size.height+scrollview.frame.origin.y, MainScreenWidth, 120)];
-    [ProductContainerScroll setBackgroundColor:[UIColor clearColor]];
-    for (int i=0; i<[ImageTitleArray count]; i++) {
+    
+//    ProductContainerScroll=[[UIScrollView alloc]initWithFrame:CGRectMake(0, _pickerView.frame.size.height+_pickerView.frame.origin.y+5.0f, MainScreenWidth, 120)];
+//    [ProductContainerScroll setBackgroundColor:[UIColor clearColor]];
+//    for (int i=0; i<[ImageTitleArray count]; i++) {
+    
+//        UIView *ProductContainerView=[[UIView alloc]initWithFrame:CGRectMake(PreFrame.origin.x, 0, 100, ProductContainerScroll.frame.size.height-20)];
+//        [ProductContainerScroll addSubview:ProductContainerView];
+//        ProductContainerView.layer.cornerRadius=4.0;
+//        ProductContainerView.clipsToBounds=YES;
+//        ProductContainerView.backgroundColor=[UIColor clearColor];
+    
+        //-----------Remove comment ---------PK-------//
         
-        UIView *ProductContainerView=[[UIView alloc]initWithFrame:CGRectMake(PreFrame.origin.x, 0, 100, ProductContainerScroll.frame.size.height-20)];
-        [ProductContainerScroll addSubview:ProductContainerView];
-        ProductContainerView.layer.cornerRadius=4.0;
-        ProductContainerView.clipsToBounds=YES;
-        ProductContainerView.backgroundColor=[UIColor clearColor];
-        
-        UIImage *image=[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[ImageTitleArray objectAtIndex:i]]]];
+//        UIImage *image=[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[ImageTitleArray objectAtIndex:i]]]];
+    NSLog(@"IMAGE URL FROM PREVIOUS PAGE-------> %@",_ImageUrlFromPreviuosPage);
 
-        UIImageView *ContainerImageView=[[UIImageView alloc]initWithFrame:CGRectMake(10,0, 80,80)];
-        [ContainerImageView setImage:image];
+        UIImageView *ContainerImageView=[[UIImageView alloc]initWithFrame:CGRectMake(MainScreenWidth/2-40,_pickerView.frame.size.height+_pickerView.frame.origin.y+5.0f, 80,80)];
+        [ContainerImageView setImage:[UIImage imageNamed:@"PlasmaTV"]];
+//        [ContainerImageView setImage:image];//------------remove comment-PK-----//
         ContainerImageView.backgroundColor=[UIColor clearColor];
         //[ContainerImageView setUserInteractionEnabled:YES];
-        ContainerImageView.tag=i;
-        ProductContainerView.tag=i;
-        UITapGestureRecognizer *Tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapTheProduct:)];
-        Tap.numberOfTapsRequired=1;
-        Tap.delegate=self;
-        [ContainerImageView addGestureRecognizer:Tap];
+        ContainerImageView.tag=9;
+//        ProductContainerView.tag=9;
+//        ContainerImageView.tag=i; //------------remove comment-PK-----//
+//        ProductContainerView.tag=i;   //------------remove comment-PK-----//
+//        UITapGestureRecognizer *Tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapTheProduct:)];
+//        Tap.numberOfTapsRequired=1;
+//        Tap.delegate=self;
+//        [ContainerImageView addGestureRecognizer:Tap];
+    
+        [MainView addSubview:ContainerImageView];
+    
+    UIImageView *deviceIndicator = [[UIImageView alloc]initWithFrame:CGRectMake(98.0f, ContainerImageView.frame.origin.y+ContainerImageView.frame.size.height+5.0f, 130.0f, 40.0f)];
+    deviceIndicator.image = [UIImage imageNamed:@"selectedwatview"];
+    [MainView addSubview:deviceIndicator];
+    
+    ///===============/////============////=====
         
-        [ProductContainerView addSubview:ContainerImageView];
-        
-        UILabel *TitleLbl=[[UILabel alloc]initWithFrame:CGRectMake(ContainerImageView.frame.origin.x-10, ContainerImageView.frame.origin.y+ContainerImageView.frame.size.height+2, ContainerImageView.frame.size.width+20, 20)];
+        UILabel *TitleLbl=[[UILabel alloc]initWithFrame:CGRectMake(ContainerImageView.frame.origin.x-10, deviceIndicator.frame.origin.y+deviceIndicator.frame.size.height-30.0f, ContainerImageView.frame.size.width+20, 20)];
         TitleLbl.textColor =[UIColor whiteColor];
         TitleLbl.textAlignment=NSTextAlignmentCenter;
         TitleLbl.adjustsFontSizeToFitWidth=YES;
         TitleLbl.font=[UIFont systemFontOfSize:15];
-        [ProductContainerView addSubview:TitleLbl];
+        [deviceIndicator addSubview:TitleLbl];
         [TitleLbl setText:_DeviceTitle];
-        [ProductContainerView addSubview:TitleLbl];
+        [MainView addSubview:TitleLbl];
+    
+    UIImageView *textimg = [[UIImageView alloc]initWithFrame:CGRectMake(60.0f, TitleLbl.frame.origin.y+TitleLbl.frame.size.height+20.0f, 200.0f, 92.0f)];
+    [textimg setImage:[UIImage imageNamed:@"croptxt"]];
+    [MainView addSubview:textimg];
+    
+    ///=========////==============
+
         
-        PreFrame=ProductContainerView.frame;
-        
-        PreFrame.origin.x=ProductContainerView.frame.size.width+ProductContainerView.frame.origin.x+5;
-        
-    }
+//        PreFrame=ProductContainerView.frame;
+//        
+//        PreFrame.origin.x=ProductContainerView.frame.size.width+ProductContainerView.frame.origin.x+5;
+    
+//    }
     
     [ProductContainerScroll setContentSize:CGSizeMake(PreFrame.origin.x, ProductContainerScroll.frame.size.height)];
     [MainView addSubview:ProductContainerScroll];

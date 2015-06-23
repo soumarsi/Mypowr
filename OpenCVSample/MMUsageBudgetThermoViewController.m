@@ -27,6 +27,7 @@
     UIImageView *thermometer;
     UIButton *upBtn, *downBtn;
     UILabel *tempLabel;
+    int count;
     BOOL menuOpened;
 
     
@@ -45,6 +46,8 @@
     [super viewWillAppear:animated];
     
     NSLog(@"MMUsageBudgetThermoViewViewController");
+    
+    count = 1;
     
     leftMenu = [[MMSideview alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.view addSubview:leftMenu];
@@ -213,7 +216,7 @@
     
     thermometer = [[UIImageView alloc]initWithFrame:CGRectMake(daysTable.frame.origin.x+daysTable.frame.size.width+20.0f, DollarIntLbl.frame.origin.y+DollarIntLbl.frame.size.height+85.0f, 30.0f, 160.0f)];
     thermometer.backgroundColor = [UIColor clearColor];
-    thermometer.image = [UIImage imageNamed:@"thermometer"];
+    thermometer.image = [UIImage imageNamed:@"thermometer72"];
     [MainView addSubview:thermometer];
     
     //------------Up Button-----------//
@@ -222,7 +225,7 @@
     [upBtn setImage:[UIImage imageNamed:@"upArrow"] forState:UIControlStateNormal];
     [upBtn setImage:[UIImage imageNamed:@"upArrow"] forState:UIControlStateSelected];
     upBtn.backgroundColor = [UIColor clearColor];
-//    [upBtn addTarget:self action:@selector(upButton:) forControlEvents:UIControlEventTouchUpInside];
+    [upBtn addTarget:self action:@selector(upButton:) forControlEvents:UIControlEventTouchUpInside];
     [MainView addSubview:upBtn];
     
     //------------Temp Label----------//
@@ -241,7 +244,7 @@
     [downBtn setImage:[UIImage imageNamed:@"downArrow"] forState:UIControlStateNormal];
     [downBtn setImage:[UIImage imageNamed:@"downArrow"] forState:UIControlStateSelected];
     downBtn.backgroundColor = [UIColor clearColor];
-    //    [downBtn addTarget:self action:@selector(downButton:) forControlEvents:UIControlEventTouchUpInside];
+    [downBtn addTarget:self action:@selector(downButton:) forControlEvents:UIControlEventTouchUpInside];
     [MainView addSubview:downBtn];
     
     //footerview.........========..........=====.....//
@@ -400,6 +403,69 @@
 -(void)footerBack:(UIButton *)sender
 {
     [[self navigationController] popViewControllerAnimated:NO];
+    
+}
+- (void)upButton:(UIButton *)sender{
+    
+    count = count + 1;
+    
+    NSLog(@"COUNT----------> %i",count);
+    
+    if (count == 2) {
+        
+        thermometer.image = [UIImage imageNamed:@"thermometer74"];
+        
+    }else if (count == 3){
+        
+        thermometer.image = [UIImage imageNamed:@"thermometer76"];
+        
+    }else if (count == 4){
+        
+        thermometer.image = [UIImage imageNamed:@"thermometer78"];
+        
+    }else if (count == 5){
+        
+        thermometer.image = [UIImage imageNamed:@"thermometer80"];
+        
+        upBtn.userInteractionEnabled = NO;
+        downBtn.userInteractionEnabled = YES;
+        
+    }else{
+        
+//        thermometer.image = [UIImage imageNamed:@"thermometer72"];
+    }
+    
+}
+- (void)downButton:(UIButton *)sender{
+    
+    count = count - 1;
+    
+    NSLog(@"COUNT----------> %i",count);
+    
+    if (count == 2) {
+        
+        thermometer.image = [UIImage imageNamed:@"thermometer74"];
+        
+    }else if (count == 3){
+        
+        thermometer.image = [UIImage imageNamed:@"thermometer76"];
+        
+    }else if (count == 4){
+        
+        thermometer.image = [UIImage imageNamed:@"thermometer78"];
+        
+    }else if (count == 5){
+        
+        thermometer.image = [UIImage imageNamed:@"thermometer80"];
+        
+    }else if (count == 1){
+        
+        thermometer.image = [UIImage imageNamed:@"thermometer72"];
+        
+        downBtn.userInteractionEnabled = NO;
+        upBtn.userInteractionEnabled = YES;
+    }
+
     
 }
 - (void)didReceiveMemoryWarning {
