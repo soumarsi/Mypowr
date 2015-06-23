@@ -29,10 +29,12 @@
     UILabel *tempLabel;
     int count;
     BOOL menuOpened;
-
+    NSMutableArray *days;
+    NSMutableArray *price;
+    UILabel *priceLabel;
     
 }
-
+@property (nonatomic)BOOL bonnoBool;
 @end
 
 @implementation MMUsageBudgetThermoViewController
@@ -44,6 +46,8 @@
 - (void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
+    
+    self.bonnoBool = NO;
     
     NSLog(@"MMUsageBudgetThermoViewViewController");
     
@@ -283,6 +287,18 @@
 //    [footermorebtn addTarget:self action:@selector(footermore:) forControlEvents:UIControlEventTouchUpInside];
     [UsBackView8 addSubview:footermorebtn];
 
+    //--------ARRAY--------//
+    
+    days = [[NSMutableArray alloc]initWithObjects:@"SUN",@"MON",@"TUE",@"WED",@"THU",@"FRI",@"SAT", nil];
+    price = [[NSMutableArray alloc]init];//WithObjects:@"11",@"10",@"10",@"12",@"11",@"9",@"9", nil];
+    
+    [price addObject:[NSNumber numberWithInt:11]];
+    [price addObject:[NSNumber numberWithInt:10]];
+    [price addObject:[NSNumber numberWithInt:10]];
+    [price addObject:[NSNumber numberWithInt:12]];
+    [price addObject:[NSNumber numberWithInt:11]];
+    [price addObject:[NSNumber numberWithInt:9]];
+    [price addObject:[NSNumber numberWithInt:9]];
     
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -314,9 +330,6 @@
     
     cell.backgroundColor = [UIColor clearColor];
     
-    NSMutableArray *days = [[NSMutableArray alloc]initWithObjects:@"SUN",@"MON",@"TUE",@"WED",@"THU",@"FRI",@"SAT", nil];
-    NSMutableArray *price = [[NSMutableArray alloc]initWithObjects:@"11",@"10",@"10",@"12",@"11",@"9",@"9", nil];
-    
     UILabel *dayLabel = [[UILabel alloc]init];
     dayLabel.frame = CGRectMake(12.0f, 2.0f, 50.0f, 30.0f);
     dayLabel.textColor = [UIColor whiteColor];
@@ -333,13 +346,25 @@
     [dollar setFont:[UIFont fontWithName:GLOBALTEXTFONT size:17]];
     [cell addSubview:dollar];
     
-    UILabel *priceLabel = [[UILabel alloc]init];
+    priceLabel = [[UILabel alloc]init];
     priceLabel.frame = CGRectMake(dollar.frame.origin.x+dollar.frame.size.width+3.0f, 0.0f, 50.0f, 30.0f);
     priceLabel.textColor = [UIColor colorWithRed:(161.0f/255.0f) green:(250.0f/255.0f) blue:(248.0f/255.0f) alpha:1.0f];
     priceLabel.font = [UIFont fontWithName:GLOBALTEXTFONT size:27];
     priceLabel.text = [NSString stringWithFormat:@"%@",[price objectAtIndex:indexPath.row]];
     [cell addSubview:priceLabel];
     
+//    int str = [[NSString stringWithFormat:@"%@",[price objectAtIndex:indexPath.row]] intValue];
+    
+//    if (self.bonnoBool == NO)
+//    {
+//        priceLabel.text = [NSString stringWithFormat:@"%@",[price objectAtIndex:indexPath.row]];
+//    }
+//    else
+//    {
+//        str=str+1;
+//        priceLabel.text = [NSString stringWithFormat:@"%d",str];
+//        
+//    }
     
     if ((indexPath.row % 2) == 0) {   //-----ODD
         
@@ -407,6 +432,12 @@
 }
 - (void)upButton:(UIButton *)sender{
     
+    self.bonnoBool = YES;
+    
+//    priceLabel.text = [NSString stringWithFormat:@"%d",[[price objectAtIndex:index] intValue]+1];
+    
+    [daysTable reloadData];
+    
     count = count + 1;
     
     NSLog(@"COUNT----------> %i",count);
@@ -414,19 +445,24 @@
     if (count == 2) {
         
         thermometer.image = [UIImage imageNamed:@"thermometer74"];
+        tempLabel.text = @"74°";
+        downBtn.userInteractionEnabled = YES;
         
     }else if (count == 3){
         
         thermometer.image = [UIImage imageNamed:@"thermometer76"];
+        tempLabel.text = @"76°";
+        downBtn.userInteractionEnabled = YES;
         
     }else if (count == 4){
         
         thermometer.image = [UIImage imageNamed:@"thermometer78"];
+        tempLabel.text = @"78°";
         
     }else if (count == 5){
         
         thermometer.image = [UIImage imageNamed:@"thermometer80"];
-        
+        tempLabel.text = @"80°";
         upBtn.userInteractionEnabled = NO;
         downBtn.userInteractionEnabled = YES;
         
@@ -445,23 +481,24 @@
     if (count == 2) {
         
         thermometer.image = [UIImage imageNamed:@"thermometer74"];
+        tempLabel.text = @"74°";
         
     }else if (count == 3){
         
         thermometer.image = [UIImage imageNamed:@"thermometer76"];
+        tempLabel.text = @"76°";
+        upBtn.userInteractionEnabled = YES;
         
     }else if (count == 4){
         
         thermometer.image = [UIImage imageNamed:@"thermometer78"];
-        
-    }else if (count == 5){
-        
-        thermometer.image = [UIImage imageNamed:@"thermometer80"];
+        tempLabel.text = @"78°";
+        upBtn.userInteractionEnabled = YES;
         
     }else if (count == 1){
         
         thermometer.image = [UIImage imageNamed:@"thermometer72"];
-        
+        tempLabel.text = @"72°";
         downBtn.userInteractionEnabled = NO;
         upBtn.userInteractionEnabled = YES;
     }

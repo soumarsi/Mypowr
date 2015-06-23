@@ -207,7 +207,7 @@
     UILabel *younum_lb = [[UILabel alloc]initWithFrame:CGRectMake(35, 335, 70, 30.0f)];
     [younum_lb setBackgroundColor:[UIColor clearColor]];
     [younum_lb setTextColor:[UIColor whiteColor]];
-    [younum_lb setText:[[NSString stringWithFormat:@"%@",[usagetree objectForKey:@"user_trees_count"]] stringByAppendingString:@"*"]];
+    [younum_lb setText:[NSString stringWithFormat:@"23*"]];//%@",[usagetree objectForKey:@"user_trees_count"]] stringByAppendingString:@"*"]];
     [younum_lb setTextAlignment:NSTextAlignmentLeft];
     [younum_lb setFont:[UIFont fontWithName:GLOBALTEXTFONT size:18]];
     [MainView addSubview:younum_lb];
@@ -222,23 +222,26 @@
     //    [MainView addSubview:youtym_lb];
     
     
-    int usertreecount = [[NSString stringWithFormat:@"%@",[usagetree objectForKey:@"user_trees_count"]] intValue]/10;
+//    int usertreecount = [[NSString stringWithFormat:@"%@",[usagetree objectForKey:@"user_trees_count"]] intValue]/10;-----PK
+    
+    int usertreecount = 3;
     
     // int usertreecount = 20/10;
     
-    NSLog(@"usertreecount   :%d",usertreecount);
+    NSLog(@"usertreecount  2015 :%d",usertreecount);
     
     
     
     int j = 327;
     
-    for (int i = 0; i <usertreecount; i++) {
+    for (int i = 0; i <3; i++) {    //for (int i = 0; i <usertreecount; i++) {  ------PK
+        
         int a = 16;
         
-        for (int k = 0; k<10; k++) {
+        for (int k = 0; k<7; k++) {
             
-            UIImageView *treeimage = [[UIImageView alloc]initWithFrame:CGRectMake(a, j, 7, 10)];
-            [treeimage setImage:[UIImage imageNamed:@"user-tree"]];
+            UIImageView *treeimage = [[UIImageView alloc]initWithFrame:CGRectMake(a, j, 9, 12)];
+            [treeimage setImage:[UIImage imageNamed:@"usage-big-tree"]];
             [MainView addSubview:treeimage];
             
             a = a+9;
@@ -246,12 +249,14 @@
             
         }
         
-        j = j-13;
+        j = j-15;
     }
     
-    int usertreecount1 = [[NSString stringWithFormat:@"%@",[usagetree objectForKey:@"user_trees_count"]] intValue]%10;
+//    int usertreecount1 = [[NSString stringWithFormat:@"%@",[usagetree objectForKey:@"user_trees_count"]] intValue]%10;------PK
     
-    NSLog(@"usertreecount rem  :%d",usertreecount1);
+    int usertreecount1 = 2;
+    
+    NSLog(@"usertreecount1 2015 :%d",usertreecount1);
     
     if (usertreecount1 == 0)
     {
@@ -263,8 +268,8 @@
         int d = 327-(13*usertreecount);
         for (int f = 0; f<usertreecount1; f++) {
             
-            UIImageView *treeimage = [[UIImageView alloc]initWithFrame:CGRectMake(g, d, 7, 10)];
-            [treeimage setImage:[UIImage imageNamed:@"user-tree"]];
+            UIImageView *treeimage = [[UIImageView alloc]initWithFrame:CGRectMake(g, d-5, 9, 12)];
+            [treeimage setImage:[UIImage imageNamed:@"usage-big-tree"]];
             [MainView addSubview:treeimage];
             
             g = g+9;
@@ -293,7 +298,7 @@
     UILabel *alexnum_lb = [[UILabel alloc]initWithFrame:CGRectMake(146, 335, 100.0f, 30.0f)];
     [alexnum_lb setBackgroundColor:[UIColor clearColor]];
     [alexnum_lb setTextColor:[UIColor colorWithRed:(221.0/255.0) green:(228.0/255.0) blue:(92.0/255.0) alpha:1.0]];
-    [alexnum_lb setText:[NSString stringWithFormat:@"%@",[usagetree objectForKey:@"nabour_trees_count"]]];
+    [alexnum_lb setText:[NSString stringWithFormat:@"31"]];//%@",[usagetree objectForKey:@"nabour_trees_count"]]];-------PK
     [alexnum_lb setTextAlignment:NSTextAlignmentLeft];
     [alexnum_lb setFont:[UIFont fontWithName:GLOBALTEXTFONT size:20]];
     [MainView addSubview:alexnum_lb];
@@ -310,25 +315,23 @@
     
     
     
-    int usertreecountnbour = [[NSString stringWithFormat:@"%@",[usagetree objectForKey:@"nabour_trees_count"]] intValue]/10;
+//    int usertreecountnbour = [[NSString stringWithFormat:@"%@",[usagetree objectForKey:@"nabour_trees_count"]] intValue]/10;-----PK
+    
+    int usertreecountnbour = 4;
     
     //int usertreecount = 20/10;
     
-    NSLog(@"usertreecount   :%d",usertreecountnbour);
-    
-    
-    
-    
+    NSLog(@"usertreecountnbour  2014 :%d",usertreecountnbour);
     
     int l = 327;
     
-    for (int i = 0; i <usertreecountnbour; i++) {
+    for (int i = 0; i <4; i++) {   //for (int i = 0; i <usertreecountnbour; i++)-------PK
         int a = 130;
         
-        for (int k = 0; k<10; k++) {
+        for (int k = 0; k<7; k++) {
             
-            UIImageView *treeimage = [[UIImageView alloc]initWithFrame:CGRectMake(a, l, 7, 10)];
-            [treeimage setImage:[UIImage imageNamed:@"user-tree"]];
+            UIImageView *treeimage = [[UIImageView alloc]initWithFrame:CGRectMake(a, l, 9, 12)];
+            [treeimage setImage:[UIImage imageNamed:@"treeYellow"]];
             [MainView addSubview:treeimage];
             
             a = a+9;
@@ -336,25 +339,29 @@
             
         }
         
-        l = l-13;
+        l = l-15;
     }
     
-    int usertreecountnbour1 = [[NSString stringWithFormat:@"%@",[usagetree objectForKey:@"nabour_trees_count"]] intValue]%10;
+//    int usertreecountnbour1 = [[NSString stringWithFormat:@"%@",[usagetree objectForKey:@"nabour_trees_count"]] intValue]%10;-------PK
     
-    NSLog(@"usertreecount rem  :%d",usertreecountnbour1);
+    int usertreecountnbour1 = 3;
     
-    if (usertreecount1 == 0)
+    NSLog(@"usertreecountnbour1  2014 :%d",usertreecountnbour1);
+    
+    if (usertreecountnbour1 == 0)
     {
         
     }
     else
     {
+        NSLog(@"TREE 2014-----> %d",usertreecountnbour1);
+        
         int g = 130;
         int d = 327-(13*usertreecountnbour);
-        for (int f = 0; f<usertreecountnbour1; f++) {
+        for (int f = 0; f<usertreecountnbour1; f++){
             
-            UIImageView *treeimage = [[UIImageView alloc]initWithFrame:CGRectMake(g, d, 7, 10)];
-            [treeimage setImage:[UIImage imageNamed:@"user-tree"]];
+            UIImageView *treeimage = [[UIImageView alloc]initWithFrame:CGRectMake(g, d-6, 9, 12)];
+            [treeimage setImage:[UIImage imageNamed:@"treeYellow"]];
             [MainView addSubview:treeimage];
             
             g = g+9;
@@ -393,7 +400,7 @@
     
     //int usertreecount = 20/10;
     
-    NSLog(@"usertreecount   :%d",goalcount);
+    NSLog(@"GO GREEN COUNT--goalcount---> :%d",goalcount);
     
     
     
@@ -404,10 +411,10 @@
     for (int i = 0; i <goalcount; i++) {
         int a = 240;
         
-        for (int k = 0; k<8; k++) {
+        for (int k = 0; k<7; k++) {
             
-            UIImageView *treeimage = [[UIImageView alloc]initWithFrame:CGRectMake(a, s, 7, 10)];
-            [treeimage setImage:[UIImage imageNamed:@"user-tree"]];
+            UIImageView *treeimage = [[UIImageView alloc]initWithFrame:CGRectMake(a, s, 9, 12)];
+            [treeimage setImage:[UIImage imageNamed:@"usage-small-tree"]];
             [MainView addSubview:treeimage];
             
             a = a+9;
@@ -415,12 +422,12 @@
             
         }
         
-        s = s-13;
+        s = s-15;
     }
     
     int goalcount1 = [[NSString stringWithFormat:@"%@",[usagetree objectForKey:@"goal"]] intValue]%8;
     
-    NSLog(@"usertreecount rem  :%d",goalcount1);
+    NSLog(@"GO GREEN COUNT--goalcount1--->  :%d",goalcount1);
     
     if (goalcount1 == 0)
     {
@@ -432,8 +439,8 @@
         int d = 327-(13*goalcount);
         for (int f = 0; f<goalcount1; f++) {
             
-            UIImageView *treeimage = [[UIImageView alloc]initWithFrame:CGRectMake(g, d, 7, 10)];
-            [treeimage setImage:[UIImage imageNamed:@"user-tree"]];
+            UIImageView *treeimage = [[UIImageView alloc]initWithFrame:CGRectMake(g, d, 9, 12)];
+            [treeimage setImage:[UIImage imageNamed:@"usage-small-tree"]];
             [MainView addSubview:treeimage];
             
             g = g+9;

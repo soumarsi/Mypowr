@@ -477,6 +477,52 @@
     [graphimg setImage:[UIImage imageNamed:@"graphstatic"]];
     [MainView addSubview:graphimg];
     
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
+    
+    NSInteger day = [components day];
+    NSInteger week = [components month];
+    NSInteger year = [components year];
+    
+    NSString *string = [NSString stringWithFormat:@"%ld.%ld.%ld", (long)day, (long)week, (long)year];
+    
+    NSLog(@"DATE--------> %@",string);
+    
+//    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+//    formatter.dateFormat = @"d.M.yyyy";
+//    NSString *string2 = [formatter stringFromDate:[NSDate date]];
+//    
+//    NSLog(@"MONTH------> %@",M)
+    
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    
+//    [df setDateFormat:@"dd"];
+//    myDayString = [df stringFromDate:[NSDate date]];
+    
+    [df setDateFormat:@"MMM"];
+    NSString *myMonthString = [[NSString alloc]init];
+    myMonthString = [df stringFromDate:[NSDate date]];
+    
+    NSLog(@"MONTH------> %@",myMonthString);
+    
+//    [df setDateFormat:@"yy"];
+//    myYearString = [df stringFromDate:[NSDate date]];
+    
+    UILabel *dateLabel = [[UILabel alloc]initWithFrame:CGRectMake(10.0f, graphimg.frame.origin.y+graphimg.frame.size.height+1.0f, 180.0f, 25.0f)];
+    dateLabel.backgroundColor = [UIColor clearColor];
+    dateLabel.textColor = [UIColor whiteColor];
+    dateLabel.font = [UIFont fontWithName:GLOBALTEXTFONT size:11.0f];
+    dateLabel.text = [NSString stringWithFormat:@"%ld     %ld    %ld     %ld     %ld     %ld     %ld",day-7,day-6,day-5,day-4,day-3,day-2,day-1];
+    [MainView addSubview:dateLabel];
+    
+    UILabel *dateLabel2 = [[UILabel alloc]initWithFrame:CGRectMake(dateLabel.frame.origin.x+dateLabel.frame.size.width+2.0f, graphimg.frame.origin.y+graphimg.frame.size.height+1.0f, 30.0f, 28.0f)];
+    dateLabel2.backgroundColor = [UIColor clearColor];
+    dateLabel2.textColor = [UIColor whiteColor];
+    dateLabel2.numberOfLines = 2;
+    dateLabel2.font = [UIFont fontWithName:GLOBALTEXTFONT size:11.0f];
+    dateLabel2.text = [NSString stringWithFormat:@"%@ \n %ld",myMonthString,day];
+    [MainView addSubview:dateLabel2];
+
+    
     /*
     UILabel *graphamount1 = [[UILabel alloc]initWithFrame:CGRectMake(183.0f, 337.0f, 31.0f, 40.0f)];
     [graphamount1 setText:@"111"];
@@ -524,7 +570,7 @@
     //graphdate10.backgroundColor=[UIColor redColor];
     [MainView addSubview:graphdate10];*/
     
-    UIImageView *img = [[UIImageView alloc]initWithFrame:CGRectMake(187.0f, 440.0f, 66.0f/2, 40.0f/2)];
+    UIImageView *img = [[UIImageView alloc]initWithFrame:CGRectMake(187.0f, dateLabel2.frame.origin.y+dateLabel2.frame.size.height+3.0f, 66.0f/2, 40.0f/2)];
     [img setImage:[UIImage imageNamed:@"menubtn"]];
     [MainView addSubview:img];
     /*******************************SANDEEP DUTTA EDIT**************************/

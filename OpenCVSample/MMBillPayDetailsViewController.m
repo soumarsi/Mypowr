@@ -127,7 +127,7 @@
     [amoutlbl setText:@"92.01"];
     [amoutlbl setTextAlignment:NSTextAlignmentLeft];
     [amoutlbl setTextColor:[UIColor whiteColor]];
-    [amoutlbl setFont:[UIFont fontWithName:GLOBALTEXTFONT size:40]];
+    [amoutlbl setFont:[UIFont fontWithName:GLOBALTEXTFONT size:38]];
     [MainView addSubview:amoutlbl];
     
     UILabel *datelbl = [[UILabel alloc]initWithFrame:CGRectMake(195.0f, 150.0f, 80.0f, 60.0f)];

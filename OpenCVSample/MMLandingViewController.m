@@ -114,8 +114,8 @@
     [MainView addSubview:Testdrivebtn];
 /// meterMaid icon set /////////
     
-    UIImageView *meterMainicon=[[UIImageView alloc]initWithFrame:CGRectMake(100, 285, 230/2, 38/2)];
-    meterMainicon.image=[UIImage imageNamed:@"metermaidicon"];
+    UIImageView *meterMainicon=[[UIImageView alloc]initWithFrame:CGRectMake(100, 285, 230/2, 40/2)];
+    meterMainicon.image=[UIImage imageNamed:@"mypwrLogo"];
     [MainView addSubview:meterMainicon];
     
  
