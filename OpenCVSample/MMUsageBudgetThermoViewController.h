@@ -17,5 +17,6 @@
 
 @property (nonatomic,retain ) NSString *DollarIntLblStr;
 @property (nonatomic,retain ) NSString *DollarFractionLblStr;
+@property (nonatomic)int str ;
 
 @end

@@ -34,7 +34,7 @@
     UILabel *priceLabel;
     
 }
-@property (nonatomic)BOOL bonnoBool;
+@property (nonatomic)BOOL priceBool;
 @end
 
 @implementation MMUsageBudgetThermoViewController
@@ -47,7 +47,7 @@
     
     [super viewWillAppear:animated];
     
-    self.bonnoBool = NO;
+    self.priceBool = NO;
     
     NSLog(@"MMUsageBudgetThermoViewViewController");
     
@@ -432,11 +432,13 @@
 }
 - (void)upButton:(UIButton *)sender{
     
-    self.bonnoBool = YES;
+    self.priceBool = YES;
     
 //    priceLabel.text = [NSString stringWithFormat:@"%d",[[price objectAtIndex:index] intValue]+1];
     
     [daysTable reloadData];
+    
+    
     
     count = count + 1;
     

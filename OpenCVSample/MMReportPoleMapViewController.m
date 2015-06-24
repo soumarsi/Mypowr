@@ -11,7 +11,11 @@
 #import <objc/message.h>
 #import "PKImagePickerViewController.h"
 #import "MMReportPoleViewController.h"
-@interface MMReportPoleMapViewController ()<UITextViewDelegate>
+@interface MMReportPoleMapViewController ()<UITextViewDelegate>{
+    
+    NSString *subThor, *thro, *loc, *adminArea, *postal;
+    
+}
 @property (nonatomic,strong) PKImagePickerViewController *imagePicker;
 
 @end
@@ -464,15 +468,88 @@
          
          //String to address
 //         locatedaddress = [[placemark1.addressDictionary valueForKey:@"FormattedAddressLines"] componentsJoinedByString:@", "];
-         locatedaddress = [NSString stringWithFormat:@"%@, %@, %@, %@, %@",placemark1.subThoroughfare,placemark1.thoroughfare,placemark1.locality,placemark1.administrativeArea,placemark1.postalCode];
+         
+         //-----------CLPlacemark Location -------------//
+         
+         //--------Sub-Thorough----//
+         
+         if (placemark1.subThoroughfare != 0) {
+             
+             NSLog(@"SUBTHO !null------>");
+             subThor = placemark1.subThoroughfare;
+             
+         }else{
+             
+             subThor = @"";
+         }
+         
+         //--------Thorough-------//
+         
+         if (placemark1.thoroughfare !=0) {
+             
+             NSLog(@"THO !null------>");
+             thro = placemark1.thoroughfare;
+             
+         }else{
+             
+             thro = @"";
+         }
+         
+         //--------Locality--------//
+         
+         if (placemark1.locality != 0) {
+             
+             NSLog(@"LOCA !null------>");
+             loc = placemark1.locality;
+             
+         }else{
+             
+             loc = @"";
+         }
+         
+         //-------Administrative Area--------//
+         
+         if (placemark1.administrativeArea != 0) {
+             
+             NSLog(@"ADMIN AREA !null------>");
+             adminArea = placemark1.administrativeArea;
+             
+         }else{
+             
+             adminArea = @"";
+         }
+         
+         //----------Postal Code--------//
+         
+         if (placemark1.postalCode != 0 ) {
+             
+             NSArray *subStrings = [placemark1.postalCode componentsSeparatedByString:@"-"]; //or rather @" - "
+             NSString *firstString = [subStrings objectAtIndex:0];
+             NSString *lastString = [subStrings objectAtIndex:1];
+             
+             NSLog(@"FIRST-----> %@  LAST------> %@",firstString,lastString);
+             
+             postal = [NSString stringWithFormat:@"%@",firstString];
+             
+         }else{
+             
+             postal = @"";
+         }
+         
+         //---------If all components is blank then showing country name-------//
+         
+         if (placemark1.subThoroughfare ==0 && placemark1.thoroughfare == 0 && placemark1.locality == 0 && placemark1.administrativeArea == 0 && placemark1.postalCode == 0) {
+             
+             locatedaddress = [NSString stringWithFormat:@"%@",placemark1.country];
+         
+         }else{
+         
+             locatedaddress = [NSString stringWithFormat:@"%@  %@  %@  %@  %@",subThor,thro,loc,adminArea,postal];
+         }
+         
+        NSLog(@"FINAL CONCAT----> %@",locatedaddress);
 
-         NSLog(@"LOCATION ADDRESS-------> %@",[placemark1.addressDictionary valueForKey:@"FormattedAddressLines"]);
-         NSLog(@"PLACEMARK1 COUNTRY------> %@",placemark1.country);
-         NSLog(@"PLACEMARK1 POSTAL CODE------> %@",placemark1.postalCode);
-         NSLog(@"PLACEMARK1 throughfare------> %@",placemark1.thoroughfare);
-         NSLog(@"PLACEMARK1 locality------> %@",placemark1.locality);
-         NSLog(@"PLACEMARK1 administrative area------> %@",placemark1.administrativeArea);
-         NSLog(@"PLACEMARK1 sub thorough------> %@",placemark1.subThoroughfare);
+         
          //         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Your location" message:locatedaddress delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil]; [alert show];
 
          loc_label.text=locatedaddress;
