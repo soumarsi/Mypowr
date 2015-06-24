@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MMUsageBudgetThermoViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>{
+@interface MMUsageBudgetThermoViewController : UIViewController
+{
     
-    UITableView *daysTable;
+    int sunpricesave,monpricesave,tuepricesave,wedpricesave,thupricesave,fripricesave,satpricesave;
+    int sunpricedec,monpricedec,tuepricedec,wedpricedec,thupricedec,fripricedec,satpricedec;
     
 }
 
@@ -18,5 +20,7 @@
 @property (nonatomic,retain ) NSString *DollarIntLblStr;
 @property (nonatomic,retain ) NSString *DollarFractionLblStr;
 @property (nonatomic)int str ;
+@property (nonatomic)int rts ;
+
 
 @end

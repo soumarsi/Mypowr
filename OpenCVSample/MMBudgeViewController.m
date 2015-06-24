@@ -362,7 +362,7 @@ CGRect  frame22 = [HeaderLbl.text boundingRectWithSize:CGSizeMake(263, 2000.0)
     /////  start of the middle image
   
     
-    UIImage *IMg=[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_SelectedImageUrlStrFromPreviousPage]]];
+    UIImage *IMg=[UIImage imageNamed:@"PlasmaTV"];//[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_SelectedImageUrlStrFromPreviousPage]]];  //------PK
    
     
     UIImageView *ProductImageView=[[UIImageView alloc]initWithFrame:CGRectMake(MainScreenWidth/2-155/4, LeftImageView.frame.origin.y+130, 155/2, 155/2)];
@@ -463,6 +463,8 @@ CGRect  frame22 = [HeaderLbl.text boundingRectWithSize:CGSizeMake(263, 2000.0)
     [leftSlide setTransform:CGAffineTransformMakeRotation(-M_PI / 2)];
     [leftSlide setThumbImage:[UIImage imageNamed:@"slideThumb"] forState:UIControlStateNormal];
     [leftSlide setMinimumTrackTintColor:[UIColor redColor]];
+    leftSlide.minimumValue = 3.5f;
+    leftSlide.maximumValue = 5.0f;
     [leftSlide addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventTouchUpInside];
     [LeftImageView addSubview:leftSlide];
     
@@ -474,6 +476,15 @@ CGRect  frame22 = [HeaderLbl.text boundingRectWithSize:CGSizeMake(263, 2000.0)
     [rightSlide setMinimumTrackTintColor:[UIColor colorWithRed:(161.0f/255.0f) green:(250.0f/255.0f) blue:(248.0f/255.0f) alpha:1.0f]];
     [RightImageView addSubview:rightSlide];
     
+    
+    //------------PK LEFT LABEL------------//
+    
+    self.leftLabel = [[UILabel alloc]initWithFrame:CGRectMake(leftSlide.frame.origin.x+leftSlide.frame.size.width+5.0f, 0.0f, 40.0f, 30.0f)];
+    self.leftLabel.backgroundColor = [UIColor redColor];
+    self.leftLabel.textColor = [UIColor whiteColor];
+    self.leftLabel.numberOfLines = 2;
+    self.leftLabel.font = [UIFont fontWithName:GLOBALTEXTFONT size:12.0f];
+    [LeftImageView addSubview:self.leftLabel];
     
     //footerview.........========..........=====.....//
     
@@ -526,11 +537,31 @@ CGRect  frame22 = [HeaderLbl.text boundingRectWithSize:CGSizeMake(263, 2000.0)
     // Do any additional setup after loading the view.
 }
 
--(void)sliderValueChanged:(UISlider *)sender
+-(void)sliderValueChanged:(UISlider *)sender    //-----------------PK
 {
     // depending on the value
     // if value is 1 {
-    NSLog(@"SLIDERRRR CHANGE----> %f",(float)sender.value);
+    NSLog(@"SLIDERRRR CHANGE----> %2f",(float)sender.value);
+    
+    if ((float)sender.value >= 3.500000) {
+        
+        self.getSliderValue = 4.000000;
+        
+    }else if ((float)sender.value >= 4.000000){
+        
+        self.getSliderValue = 4.500000;
+        
+    }else if ((float)sender.value >= 4.500000){
+        
+        self.getSliderValue = 5.000000;
+        
+    }else{  // if ((float)sender.value >= 5.000000){
+        
+        self.getSliderValue = 3.500000;
+        
+    }
+    
+    self.leftLabel.text = [NSString stringWithFormat:@"Now %2f",self.getSliderValue];
     
 }
 

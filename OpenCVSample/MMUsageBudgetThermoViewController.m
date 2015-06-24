@@ -9,10 +9,12 @@
 #import "MMUsageBudgetThermoViewController.h"
 #import "MMSideview.h"
 #import "MMusagebillViewController.h"
+#import "MMDaysAndPrice.h"
 
 @interface MMUsageBudgetThermoViewController (){
     
     MMSideview *leftMenu;
+    MMDaysAndPrice *dAP;
     UIView *MainView;
     UIButton *Menubtn;
     UILabel *HeaderLbl;
@@ -29,12 +31,8 @@
     UILabel *tempLabel;
     int count;
     BOOL menuOpened;
-    NSMutableArray *days;
-    NSMutableArray *price;
-    UILabel *priceLabel;
     
 }
-@property (nonatomic)BOOL priceBool;
 @end
 
 @implementation MMUsageBudgetThermoViewController
@@ -47,10 +45,10 @@
     
     [super viewWillAppear:animated];
     
-    self.priceBool = NO;
-    
     NSLog(@"MMUsageBudgetThermoViewViewController");
     
+    self.str =0;
+    self.rts = 0;
     count = 1;
     
     leftMenu = [[MMSideview alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -201,24 +199,49 @@
     
     ////end of dynamic month label
     
-    daysTable = [[UITableView alloc]initWithFrame:CGRectMake(3.0f, DollarIntLbl.frame.origin.y+DollarIntLbl.frame.size.height+40.0f, 135.0f, 245.0f)];
-    daysTable.backgroundColor = [UIColor clearColor];
-    daysTable.delegate = self;
-    daysTable.dataSource = self;
-    daysTable.separatorStyle = UITableViewCellSeparatorStyleNone;
-    daysTable.userInteractionEnabled = NO;
-    [MainView addSubview:daysTable];
+    /////-------------PK
+    
+//    daysTable = [[UITableView alloc]initWithFrame:CGRectMake(3.0f, DollarIntLbl.frame.origin.y+DollarIntLbl.frame.size.height+40.0f, 135.0f, 245.0f)];
+//    daysTable.backgroundColor = [UIColor clearColor];
+//    daysTable.delegate = self;
+//    daysTable.dataSource = self;
+//    daysTable.separatorStyle = UITableViewCellSeparatorStyleNone;
+//    daysTable.userInteractionEnabled = NO;
+//    [MainView addSubview:daysTable];
+    
+    //////////------------PK
+    
+    dAP = [[MMDaysAndPrice alloc]init];
+    [MainView addSubview:dAP];
+    
+    //-------Current date-------//
+    
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    [df setDateFormat:@"MMM"];
+    NSString *myMonthString = [[NSString alloc]init];
+    myMonthString = [df stringFromDate:[NSDate date]];
+    
+    NSLog(@"MONTH------> %@",myMonthString);
+    
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
+    
+    NSInteger day = [components day];
+//    NSInteger week = [components month];
+//    NSInteger year = [components year];
+    
     
     UILabel *dayLabel = [[UILabel alloc]init];
-    dayLabel.frame = CGRectMake(28.0f, daysTable.frame.origin.y+daysTable.frame.size.height+1.0f, 100.0f, 20.0f);
+    dayLabel.frame = CGRectMake(28.0f, [UIScreen mainScreen].bounds.size.height-90.0f, 100.0f, 20.0f);
+    dayLabel.backgroundColor = [UIColor clearColor];
     dayLabel.textColor = [UIColor whiteColor];
+    dayLabel.textAlignment = NSTextAlignmentCenter;
     dayLabel.font = [UIFont systemFontOfSize:12.0f];
-    dayLabel.text = [NSString stringWithFormat:@"Aug 12-18"];//,[days objectAtIndex:indexPath.row]];
+    dayLabel.text = [NSString stringWithFormat:@"%@  %ld-%ld",myMonthString,day-6,day];//,[days objectAtIndex:indexPath.row]];
     [MainView addSubview:dayLabel];
     
     //-------------Thermo Image------------//
     
-    thermometer = [[UIImageView alloc]initWithFrame:CGRectMake(daysTable.frame.origin.x+daysTable.frame.size.width+20.0f, DollarIntLbl.frame.origin.y+DollarIntLbl.frame.size.height+85.0f, 30.0f, 160.0f)];
+    thermometer = [[UIImageView alloc]initWithFrame:CGRectMake(dAP.frame.origin.x+dAP.frame.size.width+160.0f, DollarIntLbl.frame.origin.y+DollarIntLbl.frame.size.height+85.0f, 34.0f, 165.0f)];
     thermometer.backgroundColor = [UIColor clearColor];
     thermometer.image = [UIImage imageNamed:@"thermometer72"];
     [MainView addSubview:thermometer];
@@ -248,6 +271,7 @@
     [downBtn setImage:[UIImage imageNamed:@"downArrow"] forState:UIControlStateNormal];
     [downBtn setImage:[UIImage imageNamed:@"downArrow"] forState:UIControlStateSelected];
     downBtn.backgroundColor = [UIColor clearColor];
+    downBtn.userInteractionEnabled=NO;
     [downBtn addTarget:self action:@selector(downButton:) forControlEvents:UIControlEventTouchUpInside];
     [MainView addSubview:downBtn];
     
@@ -287,104 +311,6 @@
 //    [footermorebtn addTarget:self action:@selector(footermore:) forControlEvents:UIControlEventTouchUpInside];
     [UsBackView8 addSubview:footermorebtn];
 
-    //--------ARRAY--------//
-    
-    days = [[NSMutableArray alloc]initWithObjects:@"SUN",@"MON",@"TUE",@"WED",@"THU",@"FRI",@"SAT", nil];
-    price = [[NSMutableArray alloc]init];//WithObjects:@"11",@"10",@"10",@"12",@"11",@"9",@"9", nil];
-    
-    [price addObject:[NSNumber numberWithInt:11]];
-    [price addObject:[NSNumber numberWithInt:10]];
-    [price addObject:[NSNumber numberWithInt:10]];
-    [price addObject:[NSNumber numberWithInt:12]];
-    [price addObject:[NSNumber numberWithInt:11]];
-    [price addObject:[NSNumber numberWithInt:9]];
-    [price addObject:[NSNumber numberWithInt:9]];
-    
-}
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    
-    return 1;
-}
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    
-    return 7;
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-    return 35;
-    
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    NSLog(@"CELL FOR row AT INDEX PATH");
-    
-    NSString *CellIndentifier=@"cell";
-    
-    UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:CellIndentifier];
-    
-    //    if (cell==nil) {
-    
-    cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIndentifier];
-    
-    cell.backgroundColor = [UIColor clearColor];
-    
-    UILabel *dayLabel = [[UILabel alloc]init];
-    dayLabel.frame = CGRectMake(12.0f, 2.0f, 50.0f, 30.0f);
-    dayLabel.textColor = [UIColor whiteColor];
-    dayLabel.font = [UIFont systemFontOfSize:17.0f];
-    dayLabel.text = [NSString stringWithFormat:@"%@",[days objectAtIndex:indexPath.row]];
-    [cell addSubview:dayLabel];
-    
-    UILabel *dollar = [[UILabel alloc]initWithFrame:CGRectMake(dayLabel.frame.origin.x+dayLabel.frame.size.width+20.0f, 2.0f, 15.0f, 20.0f)];
-    [dollar setText:@"$"];
-    [dollar setTextAlignment:NSTextAlignmentLeft];
-    [dollar setTextColor:[UIColor colorWithRed:(161.0f/255.0f) green:(250.0f/255.0f) blue:(248.0f/255.0f) alpha:1.0f]];//RGBCOLOR(182,206, 224, 1)];
-    dollar.numberOfLines = 1;
-    [dollar setBackgroundColor:[UIColor clearColor]];
-    [dollar setFont:[UIFont fontWithName:GLOBALTEXTFONT size:17]];
-    [cell addSubview:dollar];
-    
-    priceLabel = [[UILabel alloc]init];
-    priceLabel.frame = CGRectMake(dollar.frame.origin.x+dollar.frame.size.width+3.0f, 0.0f, 50.0f, 30.0f);
-    priceLabel.textColor = [UIColor colorWithRed:(161.0f/255.0f) green:(250.0f/255.0f) blue:(248.0f/255.0f) alpha:1.0f];
-    priceLabel.font = [UIFont fontWithName:GLOBALTEXTFONT size:27];
-    priceLabel.text = [NSString stringWithFormat:@"%@",[price objectAtIndex:indexPath.row]];
-    [cell addSubview:priceLabel];
-    
-//    int str = [[NSString stringWithFormat:@"%@",[price objectAtIndex:indexPath.row]] intValue];
-    
-//    if (self.bonnoBool == NO)
-//    {
-//        priceLabel.text = [NSString stringWithFormat:@"%@",[price objectAtIndex:indexPath.row]];
-//    }
-//    else
-//    {
-//        str=str+1;
-//        priceLabel.text = [NSString stringWithFormat:@"%d",str];
-//        
-//    }
-    
-    if ((indexPath.row % 2) == 0) {   //-----ODD
-        
-        NSLog(@"ODD CELL-------->");
-        
-        cell.backgroundColor = [[UIColor whiteColor]colorWithAlphaComponent:0.3f];
-        
-    }else{      //--------EVEN
-        
-        NSLog(@"EVEN CELL-------->");
-        
-        cell.backgroundColor = [UIColor clearColor];
-    }
-
-    
-    return cell;
-    
-}
-- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
     
     
 }
@@ -432,12 +358,30 @@
 }
 - (void)upButton:(UIButton *)sender{
     
-    self.priceBool = YES;
+    self.rts = 0;
+    self.str ++;
     
-//    priceLabel.text = [NSString stringWithFormat:@"%d",[[price objectAtIndex:index] intValue]+1];
+    if (sunpricedec != 0)
+    {
+        dAP.sunPrice = sunpricedec;
+    }
     
-    [daysTable reloadData];
     
+    dAP.sunP.text = [NSString stringWithFormat:@"%d",dAP.sunPrice+self.str];
+    dAP.monP.text = [NSString stringWithFormat:@"%d",dAP.monPrice+self.str];
+    dAP.tueP.text = [NSString stringWithFormat:@"%d",dAP.tuePrice+self.str];
+    dAP.wedP.text = [NSString stringWithFormat:@"%d",dAP.wedPrice+self.str];
+    dAP.thuP.text = [NSString stringWithFormat:@"%d",dAP.thuPrice+self.str];
+    dAP.friP.text = [NSString stringWithFormat:@"%d",dAP.friPrice+self.str];
+    dAP.satP.text = [NSString stringWithFormat:@"%d",dAP.satPrice+self.str];
+    
+    sunpricesave = [dAP.sunP.text intValue];
+    monpricesave = [dAP.monP.text intValue];
+    tuepricesave = [dAP.tueP.text intValue];
+    wedpricesave = [dAP.wedP.text intValue];
+    thupricesave = [dAP.thuP.text intValue];
+    fripricesave = [dAP.friP.text intValue];
+    satpricesave = [dAP.satP.text intValue];
     
     
     count = count + 1;
@@ -475,6 +419,42 @@
     
 }
 - (void)downButton:(UIButton *)sender{
+    
+    self.str = 0;
+     self.rts --;
+    
+    NSLog(@"SUNPrice-----> %d RTS------> %d",dAP.sunPrice,self.rts);
+    
+    if (sunpricesave == 0)
+    {
+        dAP.sunP.text = [NSString stringWithFormat:@"%d",dAP.sunPrice];
+        dAP.monP.text = [NSString stringWithFormat:@"%d",dAP.monPrice];
+        dAP.tueP.text = [NSString stringWithFormat:@"%d",dAP.tuePrice];
+        dAP.wedP.text = [NSString stringWithFormat:@"%d",dAP.wedPrice];
+        dAP.thuP.text = [NSString stringWithFormat:@"%d",dAP.thuPrice];
+        dAP.friP.text = [NSString stringWithFormat:@"%d",dAP.friPrice];
+        dAP.satP.text = [NSString stringWithFormat:@"%d",dAP.satPrice];
+    }
+    else
+    {
+        dAP.sunP.text = [NSString stringWithFormat:@"%d",sunpricesave+self.rts];
+        dAP.monP.text = [NSString stringWithFormat:@"%d",monpricesave+self.rts];
+        dAP.tueP.text = [NSString stringWithFormat:@"%d",tuepricesave+self.rts];
+        dAP.wedP.text = [NSString stringWithFormat:@"%d",wedpricesave+self.rts];
+        dAP.thuP.text = [NSString stringWithFormat:@"%d",thupricesave+self.rts];
+        dAP.friP.text = [NSString stringWithFormat:@"%d",fripricesave+self.rts];
+        dAP.satP.text = [NSString stringWithFormat:@"%d",satpricesave+self.rts];
+    }
+    
+    
+    sunpricedec = [dAP.sunP.text intValue];
+    monpricedec = [dAP.monP.text intValue];
+    tuepricedec = [dAP.tueP.text intValue];
+    wedpricedec = [dAP.wedP.text intValue];
+    thupricedec = [dAP.thuP.text intValue];
+    fripricedec = [dAP.friP.text intValue];
+    satpricedec = [dAP.satP.text intValue];
+    
     
     count = count - 1;
     

@@ -101,7 +101,7 @@
 		849087231A16378E00444C3D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 849087221A16378E00444C3D /* MapKit.framework */; };
 		849087251A16379800444C3D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 849087241A16379800444C3D /* CoreLocation.framework */; };
 		BEC6AF871B344E0100A90F06 /* MMUsageBudgetThermoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEC6AF861B344E0100A90F06 /* MMUsageBudgetThermoViewController.m */; };
-		BEC7B5811B3AA555003FB0D9 /* daysAndPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = BEC7B5801B3AA555003FB0D9 /* daysAndPrice.m */; };
+		BEC7B5841B3ABD42003FB0D9 /* MMDaysAndPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = BEC7B5831B3ABD42003FB0D9 /* MMDaysAndPrice.m */; };
 		FB5BA5591A5A8CF400489CF6 /* MMAddressmapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB5BA5581A5A8CF400489CF6 /* MMAddressmapViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -281,8 +281,8 @@
 		849087241A16379800444C3D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		BEC6AF851B344E0100A90F06 /* MMUsageBudgetThermoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMUsageBudgetThermoViewController.h; sourceTree = "<group>"; };
 		BEC6AF861B344E0100A90F06 /* MMUsageBudgetThermoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMUsageBudgetThermoViewController.m; sourceTree = "<group>"; };
-		BEC7B57F1B3AA555003FB0D9 /* daysAndPrice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = daysAndPrice.h; sourceTree = "<group>"; };
-		BEC7B5801B3AA555003FB0D9 /* daysAndPrice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = daysAndPrice.m; sourceTree = "<group>"; };
+		BEC7B5821B3ABD42003FB0D9 /* MMDaysAndPrice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDaysAndPrice.h; sourceTree = "<group>"; };
+		BEC7B5831B3ABD42003FB0D9 /* MMDaysAndPrice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDaysAndPrice.m; sourceTree = "<group>"; };
 		FB5BA5571A5A8CF400489CF6 /* MMAddressmapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMAddressmapViewController.h; sourceTree = "<group>"; };
 		FB5BA5581A5A8CF400489CF6 /* MMAddressmapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMAddressmapViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -441,8 +441,8 @@
 				FB5BA5581A5A8CF400489CF6 /* MMAddressmapViewController.m */,
 				BEC6AF851B344E0100A90F06 /* MMUsageBudgetThermoViewController.h */,
 				BEC6AF861B344E0100A90F06 /* MMUsageBudgetThermoViewController.m */,
-				BEC7B57F1B3AA555003FB0D9 /* daysAndPrice.h */,
-				BEC7B5801B3AA555003FB0D9 /* daysAndPrice.m */,
+				BEC7B5821B3ABD42003FB0D9 /* MMDaysAndPrice.h */,
+				BEC7B5831B3ABD42003FB0D9 /* MMDaysAndPrice.m */,
 			);
 			path = OpenCVSample;
 			sourceTree = "<group>";
@@ -692,7 +692,7 @@
 				849087091A1633DE00444C3D /* MMSYNCViewController.m in Sources */,
 				849086A21A16338700444C3D /* SDWebImageDecoder.m in Sources */,
 				8490870F1A1633DE00444C3D /* MMUsageBudgetauditViewController.m in Sources */,
-				BEC7B5811B3AA555003FB0D9 /* daysAndPrice.m in Sources */,
+				BEC7B5841B3ABD42003FB0D9 /* MMDaysAndPrice.m in Sources */,
 				8490869F1A16338700444C3D /* NSData+ImageContentType.m in Sources */,
 				41158C0316F113B7009FA140 /* main.m in Sources */,
 				8490870A1A1633DE00444C3D /* MMEditSyncViewController.m in Sources */,

@@ -16,5 +16,7 @@
 @property (nonatomic ,retain) NSString *WattString;
 @property (nonatomic ,retain) NSString *DeviceTitle;
 @property(nonatomic,retain) NSString *SelectedImageUrlStrFromPreviousPage;
+@property (nonatomic,retain) UILabel *leftLabel, *rightLabel;
+@property (nonatomic) float getSliderValue;
 
 @end
