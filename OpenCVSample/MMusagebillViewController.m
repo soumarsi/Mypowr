@@ -228,7 +228,7 @@
     
     
     Sharebillbtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [Sharebillbtn setFrame:CGRectMake(85.0f, 530.0f, 40.5f, 34.5f)];
+    [Sharebillbtn setFrame:CGRectMake(85.0f, 522.0f, 50.0f, 50.0f)];
     [Sharebillbtn setBackgroundImage:[UIImage imageNamed:@"sharebillbtnimg"] forState:UIControlStateNormal];
     [Sharebillbtn setBackgroundImage:[UIImage imageNamed:@"sharebillbtnimg"] forState:UIControlStateHighlighted];
     [Sharebillbtn addTarget:self action:@selector(sharebill:) forControlEvents:UIControlEventTouchUpInside];

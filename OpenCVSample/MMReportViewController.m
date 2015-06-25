@@ -10,6 +10,7 @@
 #import "MMReportPoleViewController.h"
 #import "MMHomeViewController.h"
 #import "MMSvcViewController.h"
+#import <SystemConfiguration/SystemConfiguration.h>
 
 @interface MMReportViewController ()
 
@@ -26,35 +27,86 @@
     return self;
 }
 
+//----------------CHECK INTERNET STATUS------------//
+
+- (BOOL) currentNetworkStatus {
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    BOOL connected;
+    BOOL isConnected;
+    const char *host = "www.apple.com";
+    SCNetworkReachabilityRef reachability = SCNetworkReachabilityCreateWithName(NULL, host);
+    SCNetworkReachabilityFlags flags;
+    connected = SCNetworkReachabilityGetFlags(reachability, &flags);
+    isConnected = NO;
+    isConnected = connected && (flags & kSCNetworkFlagsReachable) && !(flags & kSCNetworkFlagsConnectionRequired);
+    CFRelease(reachability);
+    return isConnected;
+}
+//- (BOOL)CheckInternet
+//{
+//    BOOL network = [self currentNetworkStatus];
+//    
+//    if(network)
+//    {
+//        NSLog(@"Network Available");
+//        return YES;
+//    }
+//    else
+//    {
+//        NSLog(@"No Network Available");
+//    }
+//}
+//--------------------------------------------------//
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     NSLog(@"mmreportviewcontroller");
     
-    // Do any additional setup after loading the view.
+//    [self CheckInternet];
     
-    Report_Array = [[NSMutableArray alloc]init];
+    self.network = [self currentNetworkStatus];
     
-    NSBundle *mainBundle = [NSBundle mainBundle] ;
-    
-    NSString *ReportStr = [[NSString alloc]init];
-    
-    ReportStr = [NSString stringWithFormat:@"%@%@",DOMAIN_APP_URL,[mainBundle objectForInfoDictionaryKey:@"REPORT_CATEGORY"]];
-    NSError *error=nil;
-    NSData *ReportData=[NSData dataWithContentsOfURL:[NSURL URLWithString:ReportStr]options:NSDataReadingUncached error:&error];
-    NSDictionary *Report_categoryjson=[NSJSONSerialization JSONObjectWithData:ReportData options:kNilOptions error:&error];
-    
-    for(dict in Report_categoryjson){
+    if(self.network)
+    {
+        NSLog(@"Network Available");
         
-        [Report_Array addObject:dict];
+        // Do any additional setup after loading the view.
+        
+        Report_Array = [[NSMutableArray alloc]init];
+        
+        NSBundle *mainBundle = [NSBundle mainBundle] ;
+        
+        NSString *ReportStr = [[NSString alloc]init];
+        
+        ReportStr = [NSString stringWithFormat:@"%@%@",DOMAIN_APP_URL,[mainBundle objectForInfoDictionaryKey:@"REPORT_CATEGORY"]];
+        NSError *error=nil;
+        NSData *ReportData=[NSData dataWithContentsOfURL:[NSURL URLWithString:ReportStr]options:NSDataReadingUncached error:&error];
+        NSDictionary *Report_categoryjson=[NSJSONSerialization JSONObjectWithData:ReportData options:kNilOptions error:&error];
+        
+        for(dict in Report_categoryjson){
+            
+            [Report_Array addObject:dict];
+        }
+
     }
+    else
+    {
+        NSLog(@"No Network Available");
+        
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"Please check your internet connectivity" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    
     
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     
     [super viewDidAppear:animated];
+    
+    
     
     if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
         self.navigationController.interactivePopGestureRecognizer.enabled=NO;
@@ -125,21 +177,7 @@
     [insidebtn setFrame:CGRectMake(50.0f,190.0f, 50.0f, 40.0f)];
     [insidebtn setBackgroundImage:[UIImage imageNamed:@"insidebtn"] forState:UIControlStateNormal];
     [insidebtn setBackgroundImage:[UIImage imageNamed:@"insidebtn"] forState:UIControlStateHighlighted];
-    //    [insidebtn addTarget:self action:@selector(inside:) forControlEvents:UIControlEventTouchUpInside];
     [MainView addSubview:insidebtn];
-    
-    
-    
-    
-    
-    insidelbl = [[UILabel alloc]initWithFrame:CGRectMake(47.0f, 155.0f,100.0f, 30.0f)];
-    [insidelbl setBackgroundColor:[UIColor clearColor]];
-    //[insidelbl setText:@"INSIDE"];
-    [insidelbl setText:[NSString stringWithFormat:@"%@",[[Report_Array objectAtIndex:0]objectForKey:@"parent_category"]]];
-    [insidelbl setTextAlignment:NSTextAlignmentLeft];
-    [insidelbl setTextColor:[UIColor whiteColor]];
-    [insidelbl setFont:[UIFont fontWithName:GLOBALTEXTFONT_BOLD size:15.0f]];
-    [MainView addSubview:insidelbl];
     
     
     
@@ -147,79 +185,29 @@
     [insideview setBackgroundColor:[UIColor clearColor]];
     [MainView addSubview:insideview];
     
-    
-    //    UITapGestureRecognizer *insidetap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(inside:)];
-    //    [insideview addGestureRecognizer:insidetap];
-    //    insideview.userInteractionEnabled = YES;
-    
-    
-    
     //pole button and text...............
-    
     
     polebtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [polebtn setFrame:CGRectMake(225.0f,190.0f, 37.0f, 52.5f)];
     [polebtn setBackgroundImage:[UIImage imageNamed:@"polebtn"] forState:UIControlStateNormal];
     [polebtn setBackgroundImage:[UIImage imageNamed:@"polebtn"] forState:UIControlStateHighlighted];
-    [polebtn addTarget:self action:@selector(pole:) forControlEvents:UIControlEventTouchUpInside];
     [MainView addSubview:polebtn];
-    
-    
-    
-    polelbl = [[UILabel alloc]initWithFrame:CGRectMake(222.0f, 155.0f,100.0f, 30.0f)];
-    [polelbl setBackgroundColor:[UIColor clearColor]];
-    [polelbl setText:[NSString stringWithFormat:@"%@",[[Report_Array objectAtIndex:1]objectForKey:@"parent_category"]]];
-    [polelbl setTextAlignment:NSTextAlignmentLeft];
-    [polelbl setTextColor:[UIColor whiteColor]];
-    [polelbl setFont:[UIFont fontWithName:GLOBALTEXTFONT_BOLD size:15.0f]];
-    [MainView addSubview:polelbl];
-    
-    
     
     UIView *poleview = [[UIView alloc]initWithFrame:CGRectMake(222.0f,153.0f, 100.0f, 90.0f)];
     [poleview setBackgroundColor:[UIColor clearColor]];
     [MainView addSubview:poleview];
     
-    
-    UITapGestureRecognizer *poletap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(pole:)];
-    [poleview addGestureRecognizer:poletap];
-    poleview.userInteractionEnabled = YES;
-    
-    
-    
-    
-    
     //WIRE button and text...............
-    
-    
     
     wirebtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [wirebtn setFrame:CGRectMake(50.0f,335.0f, 39.0f, 47.5f)];
     [wirebtn setBackgroundImage:[UIImage imageNamed:@"wire"] forState:UIControlStateNormal];
     [wirebtn setBackgroundImage:[UIImage imageNamed:@"wire"] forState:UIControlStateHighlighted];
-    //    [wirebtn addTarget:self action:@selector(wire:) forControlEvents:UIControlEventTouchUpInside];
     [MainView addSubview:wirebtn];
-    
-    
-    
-    wirelbl = [[UILabel alloc]initWithFrame:CGRectMake(50.0f, 387.0f,100.0f, 30.0f)];
-    [wirelbl setBackgroundColor:[UIColor clearColor]];
-    [wirelbl setText:[NSString stringWithFormat:@"%@",[[Report_Array objectAtIndex:2]objectForKey:@"parent_category"]]];
-    [wirelbl setTextAlignment:NSTextAlignmentLeft];
-    [wirelbl setTextColor:[UIColor whiteColor]];
-    [wirelbl setFont:[UIFont fontWithName:GLOBALTEXTFONT_BOLD size:15.0f]];
-    [MainView addSubview:wirelbl];
-    
     
     UIView *wireview = [[UIView alloc]initWithFrame:CGRectMake(50.0f,335.0f, 100.0f, 100.0f)];
     [wireview setBackgroundColor:[UIColor clearColor]];
     [MainView addSubview:wireview];
-    
-    
-    //    UITapGestureRecognizer *wiretap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(wire:)];
-    //    [wireview addGestureRecognizer:wiretap];
-    //    wireview.userInteractionEnabled = YES;
-    
     
     //parts button and text...............
     
@@ -228,29 +216,11 @@
     [partsbtn setFrame:CGRectMake(225.0f,335.0f, 37.0f, 52.5f)];
     [partsbtn setBackgroundImage:[UIImage imageNamed:@"parts"] forState:UIControlStateNormal];
     [partsbtn setBackgroundImage:[UIImage imageNamed:@"parts"] forState:UIControlStateHighlighted];
-    //    [partsbtn addTarget:self action:@selector(parts:) forControlEvents:UIControlEventTouchUpInside];
     [MainView addSubview:partsbtn];
-    
-    
-    
-    partslbl = [[UILabel alloc]initWithFrame:CGRectMake(218.0f, 387.0f,100.0f, 30.0f)];
-    [partslbl setBackgroundColor:[UIColor clearColor]];
-    [partslbl setText:[NSString stringWithFormat:@"%@",[[Report_Array objectAtIndex:3]objectForKey:@"parent_category"]]];
-    [partslbl setTextAlignment:NSTextAlignmentLeft];
-    [partslbl setTextColor:[UIColor whiteColor]];
-    [partslbl setFont:[UIFont fontWithName:GLOBALTEXTFONT_BOLD size:15.0f]];
-    [MainView addSubview:partslbl];
-    
-    
     
     UIView *partsview = [[UIView alloc]initWithFrame:CGRectMake(220.0f,335.0f, 100.0f, 100.0f)];
     [partsview setBackgroundColor:[UIColor clearColor]];
     [MainView addSubview:partsview];
-    
-    
-    //    UITapGestureRecognizer *partstap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(parts:)];
-    //    [partsview addGestureRecognizer:partstap];
-    //    partsview.userInteractionEnabled = YES;
     
     //meter logo.............
     
@@ -306,6 +276,76 @@
     UITapGestureRecognizer *backtp = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(back:)];
     [backview addGestureRecognizer:backtp];
     backview.userInteractionEnabled = YES;
+    
+    
+    if(self.network)
+    {
+        //---------------------INSIDE___PK---------------------//
+        
+        insidelbl = [[UILabel alloc]initWithFrame:CGRectMake(47.0f, 155.0f,100.0f, 30.0f)];
+        [insidelbl setBackgroundColor:[UIColor clearColor]];
+        //[insidelbl setText:@"INSIDE"];
+        [insidelbl setText:[NSString stringWithFormat:@"%@",[[Report_Array objectAtIndex:0]objectForKey:@"parent_category"]]];
+        [insidelbl setTextAlignment:NSTextAlignmentLeft];
+        [insidelbl setTextColor:[UIColor whiteColor]];
+        [insidelbl setFont:[UIFont fontWithName:GLOBALTEXTFONT_BOLD size:15.0f]];
+        [MainView addSubview:insidelbl];
+    
+//        [insidebtn addTarget:self action:@selector(inside:) forControlEvents:UIControlEventTouchUpInside];
+//        
+//        UITapGestureRecognizer *insidetap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(inside:)];
+//        [insideview addGestureRecognizer:insidetap];
+//        insideview.userInteractionEnabled = YES;
+
+        //--------------------POLE___PK-------------------//
+        
+        polelbl = [[UILabel alloc]initWithFrame:CGRectMake(222.0f, 155.0f,100.0f, 30.0f)];
+        [polelbl setBackgroundColor:[UIColor clearColor]];
+        [polelbl setText:[NSString stringWithFormat:@"%@",[[Report_Array objectAtIndex:1]objectForKey:@"parent_category"]]];
+        [polelbl setTextAlignment:NSTextAlignmentLeft];
+        [polelbl setTextColor:[UIColor whiteColor]];
+        [polelbl setFont:[UIFont fontWithName:GLOBALTEXTFONT_BOLD size:15.0f]];
+        [MainView addSubview:polelbl];
+        
+        [polebtn addTarget:self action:@selector(pole:) forControlEvents:UIControlEventTouchUpInside];
+        
+        UITapGestureRecognizer *poletap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(pole:)];
+        [poleview addGestureRecognizer:poletap];
+        poleview.userInteractionEnabled = YES;
+
+        //---------------------WIRE___PK-----------------//
+        
+        wirelbl = [[UILabel alloc]initWithFrame:CGRectMake(50.0f, 387.0f,100.0f, 30.0f)];
+        [wirelbl setBackgroundColor:[UIColor clearColor]];
+        [wirelbl setText:[NSString stringWithFormat:@"%@",[[Report_Array objectAtIndex:2]objectForKey:@"parent_category"]]];
+        [wirelbl setTextAlignment:NSTextAlignmentLeft];
+        [wirelbl setTextColor:[UIColor whiteColor]];
+        [wirelbl setFont:[UIFont fontWithName:GLOBALTEXTFONT_BOLD size:15.0f]];
+        [MainView addSubview:wirelbl];
+        
+//    [wirebtn addTarget:self action:@selector(wire:) forControlEvents:UIControlEventTouchUpInside];
+        
+//    UITapGestureRecognizer *wiretap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(wire:)];
+//    [wireview addGestureRecognizer:wiretap];
+//    wireview.userInteractionEnabled = YES;
+        
+        //--------------------PARTS___PK----------------//
+        
+        partslbl = [[UILabel alloc]initWithFrame:CGRectMake(218.0f, 387.0f,100.0f, 30.0f)];
+        [partslbl setBackgroundColor:[UIColor clearColor]];
+        [partslbl setText:[NSString stringWithFormat:@"%@",[[Report_Array objectAtIndex:3]objectForKey:@"parent_category"]]];
+        [partslbl setTextAlignment:NSTextAlignmentLeft];
+        [partslbl setTextColor:[UIColor whiteColor]];
+        [partslbl setFont:[UIFont fontWithName:GLOBALTEXTFONT_BOLD size:15.0f]];
+        [MainView addSubview:partslbl];
+        
+//    [partsbtn addTarget:self action:@selector(parts:) forControlEvents:UIControlEventTouchUpInside];
+        
+//    UITapGestureRecognizer *partstap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(parts:)];
+//    [partsview addGestureRecognizer:partstap];
+//    partsview.userInteractionEnabled = YES;
+        
+    }
     
 }
 

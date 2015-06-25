@@ -406,7 +406,6 @@
     [footerbackbtn setBackgroundImage:[UIImage imageNamed:@"backbtn"] forState:UIControlStateHighlighted];
     [footerbackbtn addTarget:self action:@selector(footerback:) forControlEvents:UIControlEventTouchUpInside];
     footerbackbtn.userInteractionEnabled=YES;
-    
     [UsBackView8 addSubview:footerbackbtn];
     [footerbackbtn bringSubviewToFront:UsBackView8];
     /*******************SANDEEP DUTTA*********************/
@@ -470,12 +469,29 @@
      UIImageView *img = [[UIImageView alloc]initWithFrame:CGRectMake(160.0f, 490.0f, 66.0f/2, 40.0f/2)];
      [img setImage:[UIImage imageNamed:@"menubtn"]];
      [MainView addSubview:img];*/
-    /*******************************SANDEEP DUTTA**************************/
+    
     /*******************************SANDEEP DUTTA EDIT**************************/
-//    UIImageView *graphimg = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, 310.f, 310.0f, 106.0f)];
+    
     UIImageView *graphimg = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, 310.f, 310.0f, 120.0f)];
+    graphimg.backgroundColor = [UIColor clearColor];
     [graphimg setImage:[UIImage imageNamed:@"graphstatic"]];
     [MainView addSubview:graphimg];
+    
+    UILabel *graphSideDollar = [[UILabel alloc]initWithFrame:CGRectMake(graphimg.frame.origin.x+graphimg.frame.size.width-116.0f, graphimg.frame.origin.y+5.0f, 18.0f, 20.0f)];
+    graphSideDollar.backgroundColor = [UIColor clearColor];
+    graphSideDollar.text = @"$";
+    graphSideDollar.textAlignment = NSTextAlignmentCenter;
+    graphSideDollar.textColor = [UIColor whiteColor];
+    graphSideDollar.font = [UIFont fontWithName:GLOBALTEXTFONT size:12.0f];
+    [MainView addSubview:graphSideDollar];
+    
+    UILabel *graphSidePrice = [[UILabel alloc]initWithFrame:CGRectMake(graphSideDollar.frame.origin.x+graphSideDollar.frame.size.width, graphimg.frame.origin.y+2, 70.0f, 35.0f)];
+    graphSidePrice.backgroundColor = [UIColor clearColor];
+    graphSidePrice.text = [NSString stringWithFormat:@"111.93"];
+    graphSidePrice.textAlignment = NSTextAlignmentLeft;
+    graphSidePrice.textColor = [UIColor whiteColor];
+    graphSidePrice.font = [UIFont fontWithName:GLOBALTEXTFONT size:21.0f];
+    [MainView addSubview:graphSidePrice];
     
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
     
@@ -487,16 +503,8 @@
     
     NSLog(@"DATE--------> %@",string);
     
-//    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-//    formatter.dateFormat = @"d.M.yyyy";
-//    NSString *string2 = [formatter stringFromDate:[NSDate date]];
-//    
-//    NSLog(@"MONTH------> %@",M)
     
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    
-//    [df setDateFormat:@"dd"];
-//    myDayString = [df stringFromDate:[NSDate date]];
     
     [df setDateFormat:@"MMM"];
     NSString *myMonthString = [[NSString alloc]init];
@@ -504,8 +512,6 @@
     
     NSLog(@"MONTH------> %@",myMonthString);
     
-//    [df setDateFormat:@"yy"];
-//    myYearString = [df stringFromDate:[NSDate date]];
     
     UILabel *dateLabel = [[UILabel alloc]initWithFrame:CGRectMake(10.0f, graphimg.frame.origin.y+graphimg.frame.size.height+1.0f, 180.0f, 25.0f)];
     dateLabel.backgroundColor = [UIColor clearColor];
@@ -976,69 +982,130 @@
     //[footersetbudgt addTarget:self action:@selector(footersetbudght:) forControlEvents:UIControlEventTouchUpInside];
     [UsBackView8 addSubview:footersetbudgt];
     
+    //---------------BLUR EFFECT------------//
+    
+    UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+    
+    self.bluredView = [[UIVisualEffectView alloc] initWithEffect:effect];
+    
+    self.bluredView.frame = self.view.bounds;
+    
+    [MainView addSubview:self.bluredView];
+    
+    //-------------------------------------//
+    
     BlackView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 568.0f)];
     [BlackView setBackgroundColor:[UIColor blackColor]];
-    [BlackView setAlpha:0.8f];
-    [MainView addSubview:BlackView];
+    [BlackView setAlpha:0.7f];
+    [self.bluredView addSubview:BlackView];
     
-    UIButton *crss2 = [UIButton buttonWithType:UIButtonTypeCustom];
-    crss2.frame = CGRectMake(255, 150, 90/2, 90/2);
-    crss2.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"crossBtn"]];
-    [crss2 addTarget:self action:@selector(cross) forControlEvents:UIControlEventTouchUpInside];
-    [BlackView addSubview:crss2];
+    self.setViewFooter = [[UIView alloc] initWithFrame:CGRectMake(0, 568-42.5f, 320, 42.5f)];
+    self.setViewFooter.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"setBudgetTextfield"]];
+    [self.bluredView addSubview:self.setViewFooter];
+    
+     self.setBudgetBack = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.setBudgetBack setFrame:CGRectMake(20.0f, 3.0f, 31.5f, 36.0f)];
+    [self.setBudgetBack setBackgroundImage:[UIImage imageNamed:@"backbtn"] forState:UIControlStateNormal];
+    [self.setBudgetBack setBackgroundImage:[UIImage imageNamed:@"backbtn"] forState:UIControlStateHighlighted];
+    [self.setBudgetBack addTarget:self action:@selector(cross) forControlEvents:UIControlEventTouchUpInside];
+    self.setBudgetBack.userInteractionEnabled=YES;
+    [self.setViewFooter addSubview:self.setBudgetBack];
+    
+    self.setBudgetSave = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.setBudgetSave setFrame:CGRectMake(191.0f, 3.0f, 24.5f, 37.0f)];
+    [self.setBudgetSave setBackgroundImage:[UIImage imageNamed:@"setBudgetSave"] forState:UIControlStateNormal];
+    [self.setBudgetSave setBackgroundImage:[UIImage imageNamed:@"setBudgetSave"] forState:UIControlStateHighlighted];
+    [self.setBudgetSave addTarget:self action:@selector(save:) forControlEvents:UIControlEventTouchUpInside];
+    [self.setViewFooter addSubview:self.setBudgetSave];
     
     
-    backview = [[UIView alloc]initWithFrame:CGRectMake(20.0f, 190.0f, 280.0f, 150.0f)];
-    [backview setBackgroundColor:[UIColor whiteColor]];
-    backview.layer.cornerRadius = 5.0f;
-    [MainView addSubview:backview];
-    
-    
-    UILabel *budghtlbl = [[UILabel alloc]initWithFrame:CGRectMake(0.0f, 5.0f, 280.0f, 30.0f)];
-    [budghtlbl setText:@"Set Budget"];
+    UILabel *budghtlbl = [[UILabel alloc]initWithFrame:CGRectMake(20.0f, 120.0f, 280.0f, 60.0f)];
     [budghtlbl setTextAlignment:NSTextAlignmentCenter];
-    [budghtlbl setTextColor:[UIColor colorWithRed:(6.0f/255.0f) green:(148.0f/255.0f) blue:(204.0f/255.0f) alpha:1.0f]];
-    [budghtlbl setFont:[UIFont fontWithName:GLOBALTEXTFONT_BOLD size:20]];
-    [backview addSubview:budghtlbl];
+    [budghtlbl setNumberOfLines:2];
+    budghtlbl.lineBreakMode = NSLineBreakByWordWrapping;
+    [budghtlbl setText:@"How much would you like to spend per month?"];
+    [budghtlbl setTextColor:[UIColor whiteColor]];
+    [budghtlbl setFont:[UIFont fontWithName:GLOBALTEXTFONT_Light size:23]];
+    [BlackView addSubview:budghtlbl];
     
-    budget = [[UITextField alloc] initWithFrame:CGRectMake(10, 35.0f, 260.0f, 30)];
+    UIImageView *textFieldBackImage = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, budghtlbl.frame.origin.y+budghtlbl.frame.size.height+35.0f, self.view.bounds.size.width, 50)];
+    textFieldBackImage.backgroundColor = [UIColor clearColor];
+    textFieldBackImage.image = [UIImage imageNamed:@"setBudgetTextfield"];
+    [self.bluredView addSubview:textFieldBackImage];
+    
+    
+
+    budget = [[UITextField alloc] initWithFrame:CGRectMake(10.0f, budghtlbl.frame.origin.y+budghtlbl.frame.size.height+35.0f, textFieldBackImage.frame.size.width-22.0f, 50)];
     budget.backgroundColor = [UIColor clearColor];
-    budget.font = [UIFont fontWithName:GLOBALTEXTFONT size:17];;
-    budget.placeholder = @"Budget";
+    budget.font = [UIFont fontWithName:GLOBALTEXTFONT_Light size:45.0f];;
+    budget.placeholder = @"Type your value";
     budget.text=@"";
-    budget.layer.borderWidth = 1.0f;
-    budget.layer.borderColor = [[UIColor colorWithRed:(137.0f/255.0f) green:(177.0f/255.0f) blue:(204.0f/255.0f) alpha:1.0f]CGColor];
-    budget.textColor = [UIColor colorWithRed:(137.0f/255.0f) green:(177.0f/255.0f) blue:(204.0f/255.0f) alpha:1.0f];
-    UIView *leftView8 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 7)];
-    [budget setLeftView:leftView8];
+    budget.textColor = [UIColor whiteColor];
+    budget.textAlignment = NSTextAlignmentCenter;
     [budget setLeftViewMode:UITextFieldViewModeAlways];
-    [budget setValue:[UIColor colorWithRed:(137.0f/255.0f) green:(177.0f/255.0f) blue:(204.0f/255.0f) alpha:1.0f] forKeyPath:@"_placeholderLabel.textColor"];
+    [budget setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
     budget.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
-    [budget setValue:[UIFont fontWithName:@"Helvetica-LT-Light.ttf" size:22]  forKeyPath:@"_placeholderLabel.font"];
-    [budget setValue:[UIFont boldSystemFontOfSize:17.0f] forKeyPath:@"_placeholderLabel.font"];
+    [budget setValue:[UIFont fontWithName:GLOBALTEXTFONT size:35.0f]  forKeyPath:@"_placeholderLabel.font"];
     [budget setDelegate:self];
-    [backview addSubview:budget];
+    [self.bluredView addSubview:budget];
     
     
-    UIButton *savebtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [savebtn setFrame:CGRectMake(50.0f, 80.0f, 180.0f, 40.0f)];
-    [savebtn setTitle:@"Save" forState:UIControlStateNormal];
-    [savebtn setTitle:@"Save" forState:UIControlStateHighlighted];
-    [savebtn setTitle:@"Save" forState:UIControlStateSelected];
-    [savebtn setBackgroundColor:[UIColor colorWithRed:(137.0f/255.0f) green:(177.0f/255.0f) blue:(204.0f/255.0f) alpha:1.0f]];
-    savebtn.titleLabel.textColor = [UIColor whiteColor];
-    savebtn.titleLabel.textAlignment = NSTextAlignmentCenter;
-    savebtn.titleLabel.font = [UIFont fontWithName:GLOBALTEXTFONT size:20];
-    [savebtn addTarget:self action:@selector(save:) forControlEvents:UIControlEventTouchUpInside];
-    [backview addSubview:savebtn];
+    UILabel *budghtlbl2 = [[UILabel alloc]initWithFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width/2.0f)-260.0f/2.0f, textFieldBackImage.frame.origin.y+textFieldBackImage.frame.size.height+5.0f, 260.0f, 60.0f)];
+    [budghtlbl2 setTextAlignment:NSTextAlignmentCenter];
+    [budghtlbl2 setNumberOfLines:2];
+    budghtlbl2.lineBreakMode = NSLineBreakByWordWrapping;
+    [budghtlbl2 setText:@"We will show how you can \nget to your monthly target."];
+    [budghtlbl2 setTextColor:[UIColor whiteColor]];
+    [budghtlbl2 setFont:[UIFont fontWithName:GLOBALTEXTFONT_Light size:17.0f]];
+    [BlackView addSubview:budghtlbl2];
+    
+    UIView *emojiBack = [[UIView alloc]initWithFrame:CGRectMake(0.0f, budghtlbl2.frame.origin.y+budghtlbl2.frame.size.height+40.0f, [UIScreen mainScreen].bounds.size.width, 85.0f)];
+    emojiBack.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2f];
+    [self.bluredView addSubview:emojiBack];
+    
+    UIImageView *emojiIcon = [[UIImageView alloc]init];
+    [emojiIcon setFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width/2.0f)-(23.0f/2.0f), 7.0f, 23.0f, 20.0f)];
+    [emojiIcon setImage:[UIImage imageNamed:@"setBudgetAuditIcon"]];
+    [emojiIcon setBackgroundColor:[UIColor clearColor]];
+    [emojiBack addSubview:emojiIcon];
+    
+    UILabel *emojiLabel = [[UILabel alloc]init];
+    [emojiLabel setFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width/2.0f)-((emojiBack.frame.size.width-45.0f)/2.0f), emojiIcon.frame.origin.y+emojiIcon.frame.size.height+3.0f, emojiBack.frame.size.width-45.0f, 50.0f)];
+    [emojiLabel setText:@"Next step is to select Audit \nfrom bottom navbar."];
+    [emojiLabel setNumberOfLines:2];
+    [emojiLabel setLineBreakMode:NSLineBreakByWordWrapping];
+    [emojiLabel setTextColor:[UIColor whiteColor]];
+    [emojiLabel setTextAlignment:NSTextAlignmentCenter];
+    [emojiLabel setBackgroundColor:[UIColor clearColor]];
+    [emojiLabel setFont:[UIFont fontWithName:GLOBALTEXTFONT_Light size:17.0f]];
+    [emojiBack addSubview:emojiLabel];
+
 }
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    //limit the size :
+    int limit = 10;
+    return !([textField.text length]>limit && [string length] > range.length);
+}
+
+//-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+//    
+//    budget.text = [NSString stringWithFormat:@"$"];
+//    return YES;
+//}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    
+    [textField resignFirstResponder];
+    return YES;
+}
+
 
 -(void)cross{
     
     [BlackView setHidden:YES];
     [backview removeFromSuperview];
-    
-    [footersetbudgt removeFromSuperview];
+    [self.bluredView removeFromSuperview];
+    [self.setViewFooter removeFromSuperview];
     
     
     footersetbudgt = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -1077,6 +1144,7 @@
             
             [BlackView setHidden:YES];
             [backview removeFromSuperview];
+            [self.bluredView removeFromSuperview];
             
             [footersetbudgt removeFromSuperview];
             footersetbudgt = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -1091,14 +1159,6 @@
             [alert show];
         }
     }
-}
-
-//textfield return function...............
-
--(BOOL)textFieldShouldReturn:(UITextField *)textField{
-    
-    [textField resignFirstResponder];
-    return YES;
 }
 
 -(void)footerupdate:(UIButton *)sender{
@@ -1156,6 +1216,8 @@
         else{
             [BlackView setHidden:YES];
             [backview removeFromSuperview];
+            [self.bluredView removeFromSuperview];
+            
             [[NSUserDefaults standardUserDefaults]setObject:[NSString stringWithFormat:@"%@",budgettime] forKey:@"budgettime"];
             
             [[NSUserDefaults standardUserDefaults]setObject:[NSString stringWithFormat:@"%f",budgtstr] forKey:@"budgetexceed"];
@@ -1168,6 +1230,7 @@
             
             [BlackView removeFromSuperview];
             [backview removeFromSuperview];
+            [self.bluredView removeFromSuperview];
         }
         
         

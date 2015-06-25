@@ -34,7 +34,10 @@
 @property(nonatomic,strong) UIImage *cominimg;
 @property(nonatomic,strong) NSMutableDictionary *dataary;
 @property(nonatomic) BOOL yesfrm;
-
+@property (nonatomic, strong) UIView *setViewFooter;
+@property (nonatomic,retain) UIButton *setBudgetSave;
+@property (nonatomic,retain) UIButton *setBudgetBack;
+@property (nonatomic, retain) UIVisualEffectView *bluredView;
 @property(nonatomic,strong) NSMutableArray *readingVal;
 ///////-------- for reading
 

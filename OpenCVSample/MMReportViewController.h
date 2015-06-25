@@ -25,4 +25,6 @@
     NSMutableArray *Report_Array;
 }
 
+@property (nonatomic) BOOL network;
+
 @end

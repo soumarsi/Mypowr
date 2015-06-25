@@ -100,6 +100,7 @@
 		849087211A16378600444C3D /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 849087201A16378600444C3D /* MessageUI.framework */; };
 		849087231A16378E00444C3D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 849087221A16378E00444C3D /* MapKit.framework */; };
 		849087251A16379800444C3D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 849087241A16379800444C3D /* CoreLocation.framework */; };
+		BEC61B0B1B3BDDE100150614 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEC61B0A1B3BDDE100150614 /* SystemConfiguration.framework */; };
 		BEC6AF871B344E0100A90F06 /* MMUsageBudgetThermoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEC6AF861B344E0100A90F06 /* MMUsageBudgetThermoViewController.m */; };
 		BEC7B5841B3ABD42003FB0D9 /* MMDaysAndPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = BEC7B5831B3ABD42003FB0D9 /* MMDaysAndPrice.m */; };
 		FB5BA5591A5A8CF400489CF6 /* MMAddressmapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB5BA5581A5A8CF400489CF6 /* MMAddressmapViewController.m */; };
@@ -279,6 +280,7 @@
 		849087201A16378600444C3D /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		849087221A16378E00444C3D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		849087241A16379800444C3D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		BEC61B0A1B3BDDE100150614 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		BEC6AF851B344E0100A90F06 /* MMUsageBudgetThermoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMUsageBudgetThermoViewController.h; sourceTree = "<group>"; };
 		BEC6AF861B344E0100A90F06 /* MMUsageBudgetThermoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMUsageBudgetThermoViewController.m; sourceTree = "<group>"; };
 		BEC7B5821B3ABD42003FB0D9 /* MMDaysAndPrice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDaysAndPrice.h; sourceTree = "<group>"; };
@@ -292,6 +294,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEC61B0B1B3BDDE100150614 /* SystemConfiguration.framework in Frameworks */,
 				849087251A16379800444C3D /* CoreLocation.framework in Frameworks */,
 				849087231A16378E00444C3D /* MapKit.framework in Frameworks */,
 				849087211A16378600444C3D /* MessageUI.framework in Frameworks */,
@@ -332,6 +335,7 @@
 		41158BDC16F1137C009FA140 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BEC61B0A1B3BDDE100150614 /* SystemConfiguration.framework */,
 				1B3C319A1A1A24F700CE74AA /* FacebookSDK.framework */,
 				849087241A16379800444C3D /* CoreLocation.framework */,
 				849087221A16378E00444C3D /* MapKit.framework */,
@@ -627,11 +631,6 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0460;
-				TargetAttributes = {
-					41158BD916F1137C009FA140 = {
-						DevelopmentTeam = WXGENKJWK5;
-					};
-				};
 			};
 			buildConfigurationList = 41158BD516F1137C009FA140 /* Build configuration list for PBXProject "OpenCVSample" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -821,8 +820,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: LCF, INC (WXGENKJWK5)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: LCF, INC (WXGENKJWK5)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -834,7 +833,7 @@
 				INFOPLIST_FILE = "OpenCVSample/Supporting Files/OpenCVSample-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				PRODUCT_NAME = MyPOWR;
-				PROVISIONING_PROFILE = "0a27bd86-167a-4fce-a684-6dea3bccb78f";
+				PROVISIONING_PROFILE = "";
 				VALID_ARCHS = "armv7 armv7s arm64";
 				WRAPPER_EXTENSION = app;
 			};
@@ -845,8 +844,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: LCF, INC (WXGENKJWK5)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: LCF, INC (WXGENKJWK5)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -858,7 +857,7 @@
 				INFOPLIST_FILE = "OpenCVSample/Supporting Files/OpenCVSample-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				PRODUCT_NAME = MyPOWR;
-				PROVISIONING_PROFILE = "0a27bd86-167a-4fce-a684-6dea3bccb78f";
+				PROVISIONING_PROFILE = "";
 				VALID_ARCHS = "armv7 armv7s arm64";
 				WRAPPER_EXTENSION = app;
 			};

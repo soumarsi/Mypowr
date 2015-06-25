@@ -480,7 +480,7 @@ CGRect  frame22 = [HeaderLbl.text boundingRectWithSize:CGSizeMake(263, 2000.0)
     //------------PK LEFT LABEL------------//
     
     self.leftLabel = [[UILabel alloc]initWithFrame:CGRectMake(leftSlide.frame.origin.x+leftSlide.frame.size.width+5.0f, 0.0f, 40.0f, 30.0f)];
-    self.leftLabel.backgroundColor = [UIColor redColor];
+    self.leftLabel.backgroundColor = [UIColor clearColor];
     self.leftLabel.textColor = [UIColor whiteColor];
     self.leftLabel.numberOfLines = 2;
     self.leftLabel.font = [UIFont fontWithName:GLOBALTEXTFONT size:12.0f];

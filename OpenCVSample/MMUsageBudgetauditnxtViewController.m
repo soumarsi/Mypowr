@@ -308,7 +308,7 @@
     _pickerView.tag = 1;
     _pickerView.elementFont = [UIFont boldSystemFontOfSize:14.0f];
     _pickerView.selectionPoint = CGPointMake(160, 0);
-    [self.view addSubview:_pickerView];
+    [MainView addSubview:_pickerView];
     
     
     UIImageView *indicator = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"selectedwatview"]];
