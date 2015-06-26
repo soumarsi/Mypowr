@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>4B5C338A-B37E-4925-913E-A2EE32D257DA</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>OpenCVSample</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>5BA93143DA0B3C6EC6FDC1EE2A8C3C09BFAB1D84</key>
 		<string>https://github.com/soumarsi/Mypowr.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>OpenCVSample.xcodeproj/project.xcworkspace</string>
+	<string>OpenCVSample.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>5BA93143DA0B3C6EC6FDC1EE2A8C3C09BFAB1D84</key>

@@ -27,6 +27,7 @@
     NSString *budgettime;
     NSMutableArray *Reading_Listarray;
     NSDictionary *Reading_json;
+    NSInteger length;
 }
 ////////////---for reading
 

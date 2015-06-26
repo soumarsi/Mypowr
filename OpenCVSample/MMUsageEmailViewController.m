@@ -10,6 +10,7 @@
 #import "MMusagesharebillViewController.h"
 #import "MMUsageBudgetViewController.h"
 #import "MMUsageTreeViewController.h"
+#import "MMBillPayDetailsViewController.h"
 
 @interface MMUsageEmailViewController ()
 
@@ -184,6 +185,14 @@
     [detailsdivideimg setImage:[UIImage imageNamed:@"detailsdivideimg"]];
     [MainView addSubview:detailsdivideimg];
     
+    UIView *detailsview = [[UIView alloc]initWithFrame:CGRectMake(210.0f, 274.0f, 70.0f, 50.0f)];
+    [detailsview setBackgroundColor:[UIColor clearColor]];
+    [MainView addSubview:detailsview];
+    
+    UITapGestureRecognizer *detailstap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(detailstap:)];
+    [detailsview addGestureRecognizer:detailstap];
+    detailsview.userInteractionEnabled = YES;
+    
     //=================//////////==========
     
     UILabel *labl = [[UILabel alloc]initWithFrame:CGRectMake(20.0f, 310.0f, 280.0f, 40.0f)];
@@ -208,17 +217,6 @@
     //email and text field............
     
     
-    UIImageView *linetext = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, 380.0f, 320.0f, 0.5f)];
-    [linetext setImage:[UIImage imageNamed:@"divideimg"]];
-    [MainView addSubview:linetext];
-    
-    UIView *lineview = [[UIView alloc]initWithFrame:CGRectMake(159.5f, 380.0f, 0.5f, 50.0f)];
-    [lineview setBackgroundColor:[UIColor whiteColor]];
-    [MainView addSubview:lineview];
-    
-    UIImageView *linetext1 = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, 430.0f, 320.0f, 0.5f)];
-    [linetext1 setImage:[UIImage imageNamed:@"divideimg"]];
-    [MainView addSubview:linetext1];
     
     emailbtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [emailbtn setFrame:CGRectMake(2.0f, 382.0f, 156.0f, 46.0f)];
@@ -302,7 +300,7 @@
     
     
     cancelbtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [cancelbtn setFrame:CGRectMake(15.0f, 530.0f, 30.5f, 32.5f)];
+    [cancelbtn setFrame:CGRectMake(15.0f, 530.0f, 30.5f, 34.5f)];
     [cancelbtn setBackgroundImage:[UIImage imageNamed:@"BackFooterImage"] forState:UIControlStateNormal];
     [cancelbtn setBackgroundImage:[UIImage imageNamed:@"BackFooterImage"] forState:UIControlStateHighlighted];
     [cancelbtn addTarget:self action:@selector(cancel:) forControlEvents:UIControlEventTouchUpInside];
@@ -310,6 +308,16 @@
     
     // Do any additional setup after loading the view.
 }
+
+-(void)detailstap:(UITapGestureRecognizer *)sender{
+    
+    NSLog(@"DETAILS TAP");
+    
+    MMBillPayDetailsViewController *details = [[MMBillPayDetailsViewController alloc]init];
+    [self.navigationController pushViewController:details animated:NO];
+    
+}
+
 //menu function........
 -(void)menu:(UIButton *)sender{
     

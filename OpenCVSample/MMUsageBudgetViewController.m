@@ -45,6 +45,7 @@
 @property(nonatomic,readwrite) NSMutableDictionary *individualCircleDataDict;
 @property(nonatomic,readwrite) NSArray *SortedCircleArray;
 @property (nonatomic,readwrite) NSMutableArray *FirstKataXArray,*FirstKataYArray,*SecondKataXArray,*SecondKataYArray,*ThirdKataXArray,*ThirdKataYArray,*ForthKataXArray,*ForthKataYArray,*FifthKataXArray,*FifthKataYArray;
+@property (nonatomic, retain) UILabel *leftView5;
 
 
 /////meterpurpose
@@ -815,7 +816,7 @@
         [MainView addSubview:backview];
         
         
-        float x=10;
+//        float x=10;
         NSString *allval;
         for(int j = 0;j < _readingVal.count ;j++){
             
@@ -1035,7 +1036,8 @@
     
     
 
-    budget = [[UITextField alloc] initWithFrame:CGRectMake(10.0f, budghtlbl.frame.origin.y+budghtlbl.frame.size.height+35.0f, textFieldBackImage.frame.size.width-22.0f, 50)];
+    budget = [[UITextField alloc] init];//WithFrame:CGRectMake(10.0f, budghtlbl.frame.origin.y+budghtlbl.frame.size.height+35.0f, textFieldBackImage.frame.size.width-22.0f, 50)];
+    budget.frame = CGRectMake(10.0f, budghtlbl.frame.origin.y+budghtlbl.frame.size.height+35.0f, textFieldBackImage.frame.size.width-22.0f, 50);
     budget.backgroundColor = [UIColor clearColor];
     budget.font = [UIFont fontWithName:GLOBALTEXTFONT_Light size:45.0f];;
     budget.placeholder = @"Type your value";
@@ -1048,6 +1050,15 @@
     [budget setValue:[UIFont fontWithName:GLOBALTEXTFONT size:35.0f]  forKeyPath:@"_placeholderLabel.font"];
     [budget setDelegate:self];
     [self.bluredView addSubview:budget];
+    
+    
+    self.leftView5 = [[UILabel alloc] init];//WithFrame:CGRectMake(130.0f, 0.0f, 20, 26.0f)];
+//    [budget setLeftView:self.leftView5];
+    self.leftView5.textColor = [UIColor whiteColor];
+    self.leftView5.font = [UIFont fontWithName:GLOBALTEXTFONT_Light size:20.0f];
+    self.leftView5.backgroundColor = [UIColor clearColor];
+    [budget addSubview:self.leftView5];
+    
     
     
     UILabel *budghtlbl2 = [[UILabel alloc]initWithFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width/2.0f)-260.0f/2.0f, textFieldBackImage.frame.origin.y+textFieldBackImage.frame.size.height+5.0f, 260.0f, 60.0f)];
@@ -1081,24 +1092,116 @@
     [emojiBack addSubview:emojiLabel];
 
 }
+//----------------PK----------------//
+
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    
+    [self.leftView5 setHidden:NO];
+    
+    
+    NSString *candidateString = [budget.text stringByReplacingCharactersInRange:range withString:string];
+     NSLog(@"length-----> %lu",(unsigned long)[candidateString length]);
+    length =[candidateString length];
+    
+    if ([candidateString length]==1) {
+        
+        NSLog(@"length-----> %lu",(unsigned long)[candidateString length]);
+        
+        self.leftView5.frame = CGRectMake(125.0f, 0.0f, 20, 26.0f);
+        
+    }else if ([candidateString length]==2) {
+        
+        NSLog(@"length-----> %lu",(unsigned long)[candidateString length]);
+        
+        self.leftView5.frame = CGRectMake(110.0f, 0.0f, 20, 26.0f);
+        
+    }else if ([candidateString length]==3){
+        
+        NSLog(@"length-----> %lu",(unsigned long)[candidateString length]);
+        
+        self.leftView5.frame = CGRectMake(95.0f, 0.0f, 20, 26.0f);
+        
+    }else if ([candidateString length]==4){
+        
+        NSLog(@"length-----> %lu",(unsigned long)[candidateString length]);
+        
+        self.leftView5.frame = CGRectMake(85.0f, 0.0f, 20, 26.0f);
+        
+    }else if ([candidateString length]==5){
+        
+        NSLog(@"length-----> %lu",(unsigned long)[candidateString length]);
+        
+        self.leftView5.frame = CGRectMake(75.0f, 0.0f, 20, 26.0f);
+        
+    }else if ([candidateString length]==6){
+        
+        NSLog(@"length-----> %lu",(unsigned long)[candidateString length]);
+        
+        self.leftView5.frame = CGRectMake(63.0f, 0.0f, 20, 26.0f);
+        
+    }else if ([candidateString length]==7){
+        
+        NSLog(@"length-----> %lu",(unsigned long)[candidateString length]);
+        
+        self.leftView5.frame = CGRectMake(47.0f, 0.0f, 20, 26.0f);
+        
+    }else if ([candidateString length]==8){
+        
+        NSLog(@"length-----> %lu",(unsigned long)[candidateString length]);
+        
+        self.leftView5.frame = CGRectMake(37.0f, 0.0f, 20, 26.0f);
+        
+    }else if ([candidateString length]==9){
+        
+       NSLog(@"length-----> %lu",(unsigned long)[candidateString length]);
+        
+        self.leftView5.frame = CGRectMake(23.0f, 0.0f, 20, 26.0f);
+        
+    }else if ([candidateString length]==10){
+        
+        NSLog(@"length-----> %lu",(unsigned long)[candidateString length]);
+        
+        self.leftView5.frame = CGRectMake(15.0f, 0.0f, 20, 26.0f);
+        
+    }else if ([candidateString length]==11){
+        
+        NSLog(@"length-----> %lu",(unsigned long)[candidateString length]);
+        
+        self.leftView5.frame = CGRectMake(4.0f, 0.0f, 20, 26.0f);
+    }
+
     //limit the size :
     int limit = 10;
     return !([textField.text length]>limit && [string length] > range.length);
 }
 
-//-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-//    
-//    budget.text = [NSString stringWithFormat:@"$"];
-//    return YES;
-//}
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    
+    budget.placeholder  = nil;
+    self.leftView5.text = [NSString stringWithFormat:@"$"];
+
+    return YES;
+}
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    
+    [self.leftView5 setHidden:NO];
     
     [textField resignFirstResponder];
     return YES;
 }
-
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    
+    if (length == 0)
+    {
+        [self.leftView5 setHidden:YES];
+    }
+    else
+    {
+        [self.leftView5 setHidden:NO];
+    }
+    budget.placeholder = @"Type your value";
+}
 
 -(void)cross{
     

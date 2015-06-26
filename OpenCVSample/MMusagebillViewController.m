@@ -336,6 +336,8 @@
 
 -(void)detailstap:(UITapGestureRecognizer *)sender{
     
+    NSLog(@"DETAILS TAP");
+    
     MMBillPayDetailsViewController *details = [[MMBillPayDetailsViewController alloc]init];
     [self.navigationController pushViewController:details animated:NO];
     

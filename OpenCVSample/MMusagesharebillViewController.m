@@ -11,6 +11,8 @@
 #define kOFFSET_FOR_KEYBOARD 120.0
 #import "MMUsageBudgetViewController.h"
 #import "MMUsageTreeViewController.h"
+#import "MMBillPayDetailsViewController.h"
+
 @interface MMusagesharebillViewController ()
 
 @end
@@ -120,6 +122,8 @@
     [divideimg setImage:[UIImage imageNamed:@"divideimg"]];
     [MainView addSubview:divideimg];
     
+    
+    
     //============////////================
     
     UILabel *dollerimg = [[UILabel alloc]initWithFrame:CGRectMake(75.0f, 160.0f, 30.0f, 30.0f)];
@@ -175,6 +179,15 @@
     [detailsdivideimg setImage:[UIImage imageNamed:@"detailsdivideimg"]];
     [MainView addSubview:detailsdivideimg];
     
+    UIView *detailsview = [[UIView alloc]initWithFrame:CGRectMake(210.0f, 274.0f, 70.0f, 50.0f)];
+    [detailsview setBackgroundColor:[UIColor clearColor]];
+    [MainView addSubview:detailsview];
+    
+    UITapGestureRecognizer *detailstap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(detailstap:)];
+    [detailsview addGestureRecognizer:detailstap];
+    detailsview.userInteractionEnabled = YES;
+
+    
     //=================//////////==========
     
     UILabel *labl = [[UILabel alloc]initWithFrame:CGRectMake(20.0f, 310.0f, 280.0f, 40.0f)];
@@ -209,7 +222,7 @@
     [mobileno setLeftView:leftView5];
     [mobileno setLeftViewMode:UITextFieldViewModeAlways];
     [mobileno setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
-    [mobileno setValue:[UIFont fontWithName:GLOBALTEXTFONT_BOLD size:25]  forKeyPath:@"_placeholderLabel.font"];
+    [mobileno setValue:[UIFont fontWithName:GLOBALTEXTFONT_BOLD size:25.0f]  forKeyPath:@"_placeholderLabel.font"];
     [mobileno setDelegate:self];
     mobileno.autocorrectionType = UITextAutocorrectionTypeNo;
     mobileno.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
@@ -263,6 +276,16 @@
     
     // Do any additional setup after loading the view.
 }
+
+-(void)detailstap:(UITapGestureRecognizer *)sender{
+    
+    NSLog(@"DETAILS TAP");
+    
+    MMBillPayDetailsViewController *details = [[MMBillPayDetailsViewController alloc]init];
+    [self.navigationController pushViewController:details animated:NO];
+    
+}
+
 
 //menu function........
 -(void)menu:(UIButton *)sender{
