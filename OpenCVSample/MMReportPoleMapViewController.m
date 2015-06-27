@@ -523,11 +523,13 @@
          
          if (placemark1.postalCode != 0 ) {
              
+             NSLog(@"placemark-- %@", placemark1.postalCode);
+             
              NSArray *subStrings = [placemark1.postalCode componentsSeparatedByString:@"-"]; //or rather @" - "
              NSString *firstString = [subStrings objectAtIndex:0];
-             NSString *lastString = [subStrings objectAtIndex:1];
+
              
-             NSLog(@"FIRST-----> %@  LAST------> %@",firstString,lastString);
+             NSLog(@"FIRST-----> %@  ",firstString);
              
              postal = [NSString stringWithFormat:@"%@",firstString];
              
