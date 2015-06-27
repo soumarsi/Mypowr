@@ -12,7 +12,7 @@
 #import "MMSvcViewController.h"
 #import <SystemConfiguration/SystemConfiguration.h>
 
-@interface MMReportViewController ()
+@interface MMReportViewController ()<UIAlertViewDelegate>
 
 @end
 
@@ -256,6 +256,16 @@
     CallLbl.layer.borderWidth = 2.0;
     [EmergencyView addSubview:CallLbl];
     
+    //-------------For calling 911----------------//
+    
+    UIView *overlap = [[UIView alloc]initWithFrame:CGRectMake(CallLbl.frame.origin.x, CallLbl.frame.origin.y, CallLbl.frame.size.width, CallLbl.frame.size.height)];
+    overlap.backgroundColor = [UIColor clearColor];
+    overlap.userInteractionEnabled = YES;
+    [EmergencyView addSubview:overlap];
+    
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(call911:)];
+    [overlap addGestureRecognizer:tapGesture];
+    
     //backbutton.........................
     
     UIView *UsBackView8 = [[UIView alloc] initWithFrame:CGRectMake(0, 568-42.5f, 320, 42.5f)];
@@ -349,14 +359,35 @@
     
 }
 
+//--------Call 911--------//
+
+-(void)call911:(UITapGestureRecognizer *)sender{
+    
+    NSLog(@"Calling 911------->");
+    
+    NSString *deviceType = [UIDevice currentDevice].model;
+    
+    NSLog(@"DEVICE TYPE------->%@",deviceType);
+    
+    if ([deviceType isEqualToString:@"iPhone"]) {
+        
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"telprompt://+919433509215"]];
+        
+    }else{
+        
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"This device doesn't support calling features" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        
+        [alert show];
+    }
+
+    
+}
+
 //menu function........
 -(void)menu:(UIButton *)sender{
     
     
-    
-    
-    
-    if(MainView.frame.origin.x > 100.0f) {
+   if(MainView.frame.origin.x > 100.0f) {
         
         [UIView animateWithDuration:0.3
          

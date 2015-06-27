@@ -631,6 +631,11 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0460;
+				TargetAttributes = {
+					41158BD916F1137C009FA140 = {
+						DevelopmentTeam = WXGENKJWK5;
+					};
+				};
 			};
 			buildConfigurationList = 41158BD516F1137C009FA140 /* Build configuration list for PBXProject "OpenCVSample" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -820,8 +825,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: LCF, INC (WXGENKJWK5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: LCF, INC (WXGENKJWK5)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -833,7 +838,7 @@
 				INFOPLIST_FILE = "OpenCVSample/Supporting Files/OpenCVSample-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				PRODUCT_NAME = MyPOWR;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "0a27bd86-167a-4fce-a684-6dea3bccb78f";
 				VALID_ARCHS = "armv7 armv7s arm64";
 				WRAPPER_EXTENSION = app;
 			};
@@ -844,8 +849,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: LCF, INC (WXGENKJWK5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: LCF, INC (WXGENKJWK5)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -857,7 +862,7 @@
 				INFOPLIST_FILE = "OpenCVSample/Supporting Files/OpenCVSample-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				PRODUCT_NAME = MyPOWR;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "0a27bd86-167a-4fce-a684-6dea3bccb78f";
 				VALID_ARCHS = "armv7 armv7s arm64";
 				WRAPPER_EXTENSION = app;
 			};

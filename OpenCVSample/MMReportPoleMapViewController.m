@@ -209,7 +209,7 @@
     findMeView.userInteractionEnabled = YES;
     
     
-    crosshairLabel=[[UIImageView alloc]initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width/2-(240/2),220,240.0f,40.0f)];
+    crosshairLabel=[[UIImageView alloc]initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width/2.0f-(240.0f/2.0f),[UIScreen mainScreen].bounds.size.height/2.0f-(240.0f/2.0f),240.0f,40.0f)];
     crosshairLabel.backgroundColor=[UIColor clearColor];
     crosshairLabel.image = [UIImage imageNamed:@"crosshairLabelBack"];
 //    crosshairLabel.userInteractionEnabled=YES;
@@ -542,7 +542,14 @@
          
          if (placemark1.subThoroughfare ==0 && placemark1.thoroughfare == 0 && placemark1.locality == 0 && placemark1.administrativeArea == 0 && placemark1.postalCode == 0) {
              
-             locatedaddress = [NSString stringWithFormat:@"%@",placemark1.country];
+             if (placemark1.country == 0) {
+                 
+                 locatedaddress = @"";
+             
+             }else{
+             
+                 locatedaddress = [NSString stringWithFormat:@"%@",placemark1.country];
+             }
          
          }else{
          
@@ -630,14 +637,24 @@
     alphaView.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:0.6];
     [MainView addSubview:alphaView];
     
+    
     manualAddress = [[UITextView alloc]init];
     manualAddress.frame = CGRectMake(50.0f, 50.0f, 220.0f, 180.0f);
     manualAddress.backgroundColor = [UIColor whiteColor];
     manualAddress.delegate = self;
     manualAddress.text = @"Enter your address";
     manualAddress.textColor = [UIColor blackColor];
+    manualAddress.font = [UIFont fontWithName:GLOBALTEXTFONT size:15.0f];
     manualAddress.layer.cornerRadius = 5.0f;
     [alphaView addSubview:manualAddress];
+    
+    self.cross = [[UIButton alloc]init];
+    self.cross.frame = CGRectMake(manualAddress.frame.origin.x+manualAddress.frame.size.width-23.0f, manualAddress.frame.origin.y-37.0f, 25.0f, 35.0f);
+//    self.cross.backgroundColor = [UIColor redColor];
+    self.cross.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"cross"]];
+    [self.cross addTarget:self action:@selector(close:) forControlEvents:UIControlEventTouchUpInside];
+    [alphaView addSubview:self.cross];
+
     
     editSubmit = [[UIButton alloc]init];
     editSubmit.frame = CGRectMake(50.0f, manualAddress.frame.origin.y+manualAddress.frame.size.height+10.0f, 220.0f, 30.0f);
@@ -650,10 +667,19 @@
     [alphaView addSubview:editSubmit];
     
 }
+-(void)close:(UIButton *)sender{
+    
+    [alphaView removeFromSuperview];
+    
+}
 
 -(void)submit:(UIButton *)sender{
     
     [alphaView removeFromSuperview];
+    
+    loc_label.text = [NSString stringWithFormat:@"%@",manualAddress.text];
+    locatedaddress = manualAddress.text;
+    NSLog(@"SUBMIT LOCATIO ADDRESS-------> %@",locatedaddress);
     
 }
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView{

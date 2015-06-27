@@ -40,4 +40,6 @@
     MKPointAnnotation *myAnnotation;
 }
 
+@property (nonatomic,retain) UIButton *cross;
+
 @end

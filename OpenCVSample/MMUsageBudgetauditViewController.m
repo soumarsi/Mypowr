@@ -326,9 +326,9 @@
 //    [UsBackView8 addSubview:footerbudgtbtn];
     
     footerBackbtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [footerBackbtn setFrame:CGRectMake(20.0f, 4.0f, 31.5f, 35.0f)];
-    [footerBackbtn setBackgroundImage:[UIImage imageNamed:@"BackFooterImage"] forState:UIControlStateNormal];
-    [footerBackbtn setBackgroundImage:[UIImage imageNamed:@"BackFooterImage"] forState:UIControlStateHighlighted];
+    [footerBackbtn setFrame:CGRectMake(20.0f, 3.0f, 31.5f, 36.0f)];
+    [footerBackbtn setBackgroundImage:[UIImage imageNamed:@"backbtn"] forState:UIControlStateNormal];
+    [footerBackbtn setBackgroundImage:[UIImage imageNamed:@"backbtn"] forState:UIControlStateHighlighted];
     [footerBackbtn addTarget:self action:@selector(footerBack:) forControlEvents:UIControlEventTouchUpInside];
     [UsBackView8 addSubview:footerBackbtn];
     
