@@ -11,7 +11,7 @@
 #import "MMUsageBudgetauditViewController.h"
 #import "MMUsageTreeViewController.h"
 #import "MMGlobalUrlClass.h"
-
+#import "MMGlobalClass.h"
 #import "AbstractOCVViewController.h"
 #import "SHLineGraphView.h"
 #import "SHPlot.h"
@@ -23,10 +23,7 @@
     UIScrollView *ContainerScroll;
     NSMutableArray *ReadingArray;
     NSMutableArray *DateArray;
-    
-    
-    /////
-    
+    MMGlobalClass *globalFunc;
     UIButton *footerbackbtn;
     NSArray *ReturnArray;
     NSDictionary *ReturnDict;
@@ -46,6 +43,7 @@
 @property(nonatomic,readwrite) NSArray *SortedCircleArray;
 @property (nonatomic,readwrite) NSMutableArray *FirstKataXArray,*FirstKataYArray,*SecondKataXArray,*SecondKataYArray,*ThirdKataXArray,*ThirdKataYArray,*ForthKataXArray,*ForthKataYArray,*FifthKataXArray,*FifthKataYArray;
 @property (nonatomic, retain) UILabel *leftView5;
+@property (nonatomic) BOOL network;
 
 
 /////meterpurpose
@@ -82,80 +80,96 @@
     
     NSLog(@"MMUsageBudgetViewController");
     
+    globalFunc = [[MMGlobalClass alloc]init];
+    
 //    AppDelegate *AppObj=[[UIApplication sharedApplication]delegate];
     
-    AppObj=[[UIApplication sharedApplication]delegate];
+    self.network = globalFunc.currentNetworkStatus;
     
-    NSLog(@"usage");
-    
-    Reading_Listarray = [[NSMutableArray alloc]init];
-    
-    
-    NSBundle *mainBundle = [NSBundle mainBundle] ;
-    
-    NSString *Reading_Str = [[NSString alloc]init];
-    
-    Reading_Str = [NSString stringWithFormat:@"%@%@%@",DOMAIN_APP_URL,[mainBundle objectForInfoDictionaryKey:@"READING_LIST"],[[NSUserDefaults standardUserDefaults]objectForKey:@"id"]];
-    
-    
-    
-    NSError *error=nil;
-    
-    
-    NSData *Reading_Data=[NSData dataWithContentsOfURL:[NSURL URLWithString:Reading_Str]options:NSDataReadingUncached error:&error];
-    Reading_json=[NSJSONSerialization JSONObjectWithData:Reading_Data options:kNilOptions error:&error];
-    
-    NSLog(@"resding json.... :%@",Reading_json);
-    
-    NSString *str = [NSString stringWithFormat:@"%@",[Reading_json objectForKey:@"reading_list"]];
-    
-    
-    
-    if ([Reading_json count] == 0) {
+    if (self.network) {
         
-    }
-    else{
+        AppObj=[[UIApplication sharedApplication]delegate];
         
-        if ([str length] == 3) {
-            
+        NSLog(@"usage");
+        
+        Reading_Listarray = [[NSMutableArray alloc]init];
+        
+        
+        NSBundle *mainBundle = [NSBundle mainBundle] ;
+        
+        NSString *Reading_Str = [[NSString alloc]init];
+        
+        Reading_Str = [NSString stringWithFormat:@"%@%@%@",DOMAIN_APP_URL,[mainBundle objectForInfoDictionaryKey:@"READING_LIST"],[[NSUserDefaults standardUserDefaults]objectForKey:@"id"]];
+        
+        
+        
+        NSError *error=nil;
+        
+        
+        NSData *Reading_Data=[NSData dataWithContentsOfURL:[NSURL URLWithString:Reading_Str]options:NSDataReadingUncached error:&error];
+        Reading_json=[NSJSONSerialization JSONObjectWithData:Reading_Data options:kNilOptions error:&error];
+        
+        NSLog(@"resding json.... :%@",Reading_json);
+        
+        NSString *str = [NSString stringWithFormat:@"%@",[Reading_json objectForKey:@"reading_list"]];
+        
+        
+        
+        if ([Reading_json count] == 0) {
             
         }
         else{
-            for(NSDictionary *dict in [Reading_json objectForKey:@"reading_list"]){
+            
+            if ([str length] == 3) {
                 
-                [Reading_Listarray addObject:dict];
+                
             }
-            long count = [Reading_Listarray count];
-            
-            float monthreadvalue = [[NSString stringWithFormat:@"%@",[Reading_json objectForKey:@"perday_budget"]]floatValue];
-            
-            NSString *hightvalue = [NSString stringWithFormat:@"%@",[[Reading_Listarray objectAtIndex:count-1]objectForKey:@"date"]];
-            NSArray *divide = [hightvalue componentsSeparatedByString:@" "];
-            NSString *dividestr = [divide objectAtIndex:0];
-            NSArray *valuearray = [dividestr componentsSeparatedByString:@"-"];
-            float date = [[valuearray objectAtIndex:2]floatValue];
-            float totalvalue = monthreadvalue * date;
-            float monthmeterrding = [[NSString stringWithFormat:@"%@",[[Reading_Listarray objectAtIndex:count-1]objectForKey:@"meter_reading"]]floatValue];
-            float totalmonthrding = monthmeterrding *0.07;
-            float setbudget = [[NSString stringWithFormat:@"%@",[Reading_json objectForKey:@"budget"]]floatValue];
-            float diff = (totalvalue - totalmonthrding)/setbudget;
-            float different = diff*100;
-            
-            
-            [[NSUserDefaults standardUserDefaults]setObject:[NSString stringWithFormat:@"%@",[Reading_json objectForKey:@"time"]] forKey:@"budgettime"];
-            [[NSUserDefaults standardUserDefaults]setObject:[NSString stringWithFormat:@"%f",different] forKey:@"budgetexceed"];
-            
-            
-            
-            ///////////////////////
-            
-            
-            ReadingArray=[[NSMutableArray alloc]init];
-            DateArray=[[NSMutableArray alloc]init];
-            
+            else{
+                for(NSDictionary *dict in [Reading_json objectForKey:@"reading_list"]){
+                    
+                    [Reading_Listarray addObject:dict];
+                }
+                long count = [Reading_Listarray count];
+                
+                float monthreadvalue = [[NSString stringWithFormat:@"%@",[Reading_json objectForKey:@"perday_budget"]]floatValue];
+                
+                NSString *hightvalue = [NSString stringWithFormat:@"%@",[[Reading_Listarray objectAtIndex:count-1]objectForKey:@"date"]];
+                NSArray *divide = [hightvalue componentsSeparatedByString:@" "];
+                NSString *dividestr = [divide objectAtIndex:0];
+                NSArray *valuearray = [dividestr componentsSeparatedByString:@"-"];
+                float date = [[valuearray objectAtIndex:2]floatValue];
+                float totalvalue = monthreadvalue * date;
+                float monthmeterrding = [[NSString stringWithFormat:@"%@",[[Reading_Listarray objectAtIndex:count-1]objectForKey:@"meter_reading"]]floatValue];
+                float totalmonthrding = monthmeterrding *0.07;
+                float setbudget = [[NSString stringWithFormat:@"%@",[Reading_json objectForKey:@"budget"]]floatValue];
+                float diff = (totalvalue - totalmonthrding)/setbudget;
+                float different = diff*100;
+                
+                
+                [[NSUserDefaults standardUserDefaults]setObject:[NSString stringWithFormat:@"%@",[Reading_json objectForKey:@"time"]] forKey:@"budgettime"];
+                [[NSUserDefaults standardUserDefaults]setObject:[NSString stringWithFormat:@"%f",different] forKey:@"budgetexceed"];
+                
+                
+                
+                ///////////////////////
+                
+                
+                ReadingArray=[[NSMutableArray alloc]init];
+                DateArray=[[NSMutableArray alloc]init];
+                
+            }
         }
+
+    }else{
+        
+        NSLog(@"No Network Available");
+        
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"Please check your internet connectivity" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        
     }
-    // Do any additional setup after loading the view.
+    
+        // Do any additional setup after loading the view.
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -398,7 +412,9 @@
      [footerbudgtbtn setBackgroundImage:[UIImage imageNamed:@"footerselectedbudgt"] forState:UIControlStateHighlighted];*/
     [UsBackView8 addSubview:footerbudgtbtn];
     /*******************OLDER CODE*********************/
+    
     /*******************SANDEEP DUTTA*********************/
+    
     footerbackbtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [footerbackbtn setFrame:CGRectMake(20.0f, 3.0f, 31.5f, 36.0f)];
     // [footerbackbtn setBackgroundImage:[UIImage imageNamed:@"footerselectedbudgt"] forState:UIControlStateNormal];

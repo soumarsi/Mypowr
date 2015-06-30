@@ -80,7 +80,7 @@
     //budget button ..........
     
     budgetbtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [budgetbtn setFrame:CGRectMake(37.0f, 80.0f, 90/2, 83/2)];
+    [budgetbtn setFrame:CGRectMake(30.0f, 80.0f, 90/2, 83/2)];
     [budgetbtn setBackgroundImage:[UIImage imageNamed:@"Budgetimg"] forState:UIControlStateNormal];
     [budgetbtn setBackgroundImage:[UIImage imageNamed:@"Budgetimg"] forState:UIControlStateHighlighted];
     [budgetbtn addTarget:self action:@selector(budget:) forControlEvents:UIControlEventTouchUpInside];
@@ -90,17 +90,17 @@
     //bill button ..........
     
     billbtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [billbtn setFrame:CGRectMake(153, 82.0f, 50/2, 79/2)];
+    [billbtn setFrame:CGRectMake(budgetbtn.frame.origin.x+budgetbtn.frame.size.width+35.0f,83.0f,50/2, 79/2)];//148.0f, 82.0f, 70/2, 84/2)];
     [billbtn setBackgroundImage:[UIImage imageNamed:@"billimgbtn"] forState:UIControlStateNormal];
     [billbtn setBackgroundImage:[UIImage imageNamed:@"billimgbtn"] forState:UIControlStateHighlighted];
-    //[billbtn addTarget:self action:@selector(bill:) forControlEvents:UIControlEventTouchUpInside];
+//    [billbtn addTarget:self action:@selector(bill:) forControlEvents:UIControlEventTouchUpInside];
     [MainView addSubview:billbtn];
     
     
     //usage button ..........
     
     usagebtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [usagebtn setFrame:CGRectMake(251, 89.0f, 74/2, 65/2)];
+    [usagebtn setFrame:CGRectMake(billbtn.frame.origin.x+billbtn.frame.size.width+40.0f,90.0f, 74/2, 65/2)];//251, 83.0f, 74/2, 65/2)];
     [usagebtn setBackgroundImage:[UIImage imageNamed:@"usageimgbtn"] forState:UIControlStateNormal];
     [usagebtn setBackgroundImage:[UIImage imageNamed:@"usageimgbtn"] forState:UIControlStateHighlighted];
     [usagebtn addTarget:self action:@selector(usage:) forControlEvents:UIControlEventTouchUpInside];
@@ -109,72 +109,85 @@
     
     //phill button ..........
     
-//    phillbtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [phillbtn setFrame:CGRectMake(255, 82.0f, 56/2, 78/2)];
-//    [phillbtn setBackgroundImage:[UIImage imageNamed:@"phillimgbtn"] forState:UIControlStateNormal];
-//    [phillbtn setBackgroundImage:[UIImage imageNamed:@"phillimgbtn"] forState:UIControlStateHighlighted];
-//    //[phillbtn addTarget:self action:@selector(phill:) forControlEvents:UIControlEventTouchUpInside];
-//    [MainView addSubview:phillbtn];
-    
-    
-    UIImageView *divideimg = [[UIImageView alloc]initWithFrame:CGRectMake(75.0f, 200.0f, 341/2, 0.5f)];
-    [divideimg setImage:[UIImage imageNamed:@"divideimg"]];
-    [MainView addSubview:divideimg];
-    
+    phillbtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [phillbtn setFrame:CGRectMake(usagebtn.frame.origin.x+usagebtn.frame.size.width+40.0f,83.0f, 56/2, 78/2)];//255, 83.0f, 56/2, 78/2)];
+    [phillbtn setBackgroundImage:[UIImage imageNamed:@"phillimgbtn"] forState:UIControlStateNormal];
+    [phillbtn setBackgroundImage:[UIImage imageNamed:@"phillimgbtn"] forState:UIControlStateHighlighted];
+    //[phillbtn addTarget:self action:@selector(phill:) forControlEvents:UIControlEventTouchUpInside];
+    [MainView addSubview:phillbtn];
+
+
     //============////////================
     
-    UILabel *dollerimg = [[UILabel alloc]initWithFrame:CGRectMake(75.0f, 160.0f, 30.0f, 30.0f)];
+    UILabel *dollerimg = [[UILabel alloc]initWithFrame:CGRectMake(110.0f, 160.0f, 30.0f, 30.0f)];
     [dollerimg setText:@"$"];
     [dollerimg setTextAlignment:NSTextAlignmentLeft];
     [dollerimg setTextColor:[UIColor whiteColor]];
     [dollerimg setFont:[UIFont fontWithName:GLOBALTEXTFONT size:20.0f]];
     [MainView addSubview:dollerimg];
     
-    UILabel *amoutlbl = [[UILabel alloc]initWithFrame:CGRectMake(87.0f, 150.0f, 100.0f, 60.0f)];
+    UILabel *amoutlbl = [[UILabel alloc]initWithFrame:CGRectMake(dollerimg.frame.origin.x+dollerimg.frame.size.width-16.0f, 150.0f, 100.0f, 60.0f)];
     [amoutlbl setText:@"92.01"];
     [amoutlbl setTextAlignment:NSTextAlignmentLeft];
     [amoutlbl setTextColor:[UIColor whiteColor]];
     [amoutlbl setFont:[UIFont fontWithName:GLOBALTEXTFONT size:38]];
     [MainView addSubview:amoutlbl];
     
-    UILabel *datelbl = [[UILabel alloc]initWithFrame:CGRectMake(195.0f, 150.0f, 80.0f, 60.0f)];
-    [datelbl setText:@"J u l y Total"];
+    UILabel *datelbl = [[UILabel alloc]initWithFrame:CGRectMake(amoutlbl.frame.origin.x+amoutlbl.frame.size.width-10.0f, 150.0f, 80.0f, 60.0f)];
+    [datelbl setText:@"July \nTotal"];
     datelbl.numberOfLines = 2;
-    [datelbl setTextAlignment:NSTextAlignmentLeft];
+    datelbl.lineBreakMode = NSLineBreakByWordWrapping;
+    [datelbl setTextAlignment:NSTextAlignmentCenter];
     [datelbl setTextColor:[UIColor whiteColor]];
     [datelbl setFont:[UIFont fontWithName:GLOBALTEXTFONT size:18.0f]];
     [MainView addSubview:datelbl];
+    
+    //------------------//
+    
+    UIImageView *divideimg = [[UIImageView alloc]initWithFrame:CGRectMake(dollerimg.frame.origin.x, datelbl.frame.origin.y+datelbl.frame.size.height-7.0f, 341/2, 0.5f)];
+    [divideimg setImage:[UIImage imageNamed:@"divideimg"]];
+    [MainView addSubview:divideimg];
     
     
     //=======///=====////=====
     
     
-    UIImageView *questionmark = [[UIImageView alloc]initWithFrame:CGRectMake(20.0f, 190.0f, 19.0f, 19.0f)];
-    [questionmark setImage:[UIImage imageNamed:@"Questionmarkimg"]];
-    [MainView addSubview:questionmark];
+    UILabel *dueLabel = [[UILabel alloc]initWithFrame:CGRectMake(20.0f, 152.0f, 55.0f, 30.0f)];
+    dueLabel.text = @"DUE";
+    dueLabel.backgroundColor = [UIColor clearColor];
+    dueLabel.textAlignment = NSTextAlignmentCenter;
+    dueLabel.textColor = [UIColor whiteColor];
+    dueLabel.font = [UIFont fontWithName:GLOBALTEXTFONT size:13.0f];
+    [MainView addSubview:dueLabel];
+    
+    UIView *dateBack = [[UIView alloc]initWithFrame:CGRectMake(20.0f, 180.0f, 55.0f, 50.0f)];
+    dateBack.backgroundColor = [UIColor colorWithRed:(156.0f/255.0f) green:(186.0f/255.0f) blue:(209.0f/255.0f) alpha:1.0f];
+    [MainView addSubview:dateBack];
+
     
     
     //===========////=======//========
     
     
-    UILabel *dollerimg1 = [[UILabel alloc]initWithFrame:CGRectMake(65.0f, 205.0f, 30.0f, 40.0f)];
+    UILabel *dollerimg1 = [[UILabel alloc]initWithFrame:CGRectMake(92.0f, 200.0f, 30.0f, 40.0f)];
     [dollerimg1 setText:@"$"];
     [dollerimg1 setTextAlignment:NSTextAlignmentLeft];
     [dollerimg1 setTextColor:[UIColor whiteColor]];
     [dollerimg1 setFont:[UIFont fontWithName:GLOBALTEXTFONT size:20.0f]];
     [MainView addSubview:dollerimg1];
     
-    UILabel *amoutlbl1 = [[UILabel alloc]initWithFrame:CGRectMake(77.0f, 200.0f, 120.0f, 60.0f)];
+    UILabel *amoutlbl1 = [[UILabel alloc]initWithFrame:CGRectMake(dollerimg1.frame.origin.x+dollerimg1.frame.size.width-17.0f, 195.0f, 120.0f, 60.0f)];
     [amoutlbl1 setText:@"178.73"];
     [amoutlbl1 setTextAlignment:NSTextAlignmentLeft];
     [amoutlbl1 setTextColor:[UIColor whiteColor]];
     [amoutlbl1 setFont:[UIFont fontWithName:GLOBALTEXTFONT size:38.0f]];
     [MainView addSubview:amoutlbl1];
     
-    UILabel *datelbl1 = [[UILabel alloc]initWithFrame:CGRectMake(205.0f, 200.0f, 80.0f, 60.0f)];
+    UILabel *datelbl1 = [[UILabel alloc]initWithFrame:CGRectMake(amoutlbl1.frame.origin.x+amoutlbl1.frame.size.width-9.0f, 195.0f, 80.0f, 60.0f)];
     [datelbl1 setText:@"Grand Total"];
     datelbl1.numberOfLines = 2;
-    [datelbl1 setTextAlignment:NSTextAlignmentLeft];
+    datelbl1.lineBreakMode = NSLineBreakByWordWrapping;
+    [datelbl1 setTextAlignment:NSTextAlignmentCenter];
     [datelbl1 setTextColor:[UIColor whiteColor]];
     [datelbl1 setFont:[UIFont fontWithName:GLOBALTEXTFONT size:18.0f]];
     [MainView addSubview:datelbl1];

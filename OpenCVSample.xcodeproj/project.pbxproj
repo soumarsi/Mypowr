@@ -103,6 +103,7 @@
 		BEC61B0B1B3BDDE100150614 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEC61B0A1B3BDDE100150614 /* SystemConfiguration.framework */; };
 		BEC6AF871B344E0100A90F06 /* MMUsageBudgetThermoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEC6AF861B344E0100A90F06 /* MMUsageBudgetThermoViewController.m */; };
 		BEC7B5841B3ABD42003FB0D9 /* MMDaysAndPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = BEC7B5831B3ABD42003FB0D9 /* MMDaysAndPrice.m */; };
+		BED52D341B42635D001D1B98 /* MMGlobalClass.m in Sources */ = {isa = PBXBuildFile; fileRef = BED52D331B42635D001D1B98 /* MMGlobalClass.m */; };
 		FB5BA5591A5A8CF400489CF6 /* MMAddressmapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB5BA5581A5A8CF400489CF6 /* MMAddressmapViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -285,6 +286,8 @@
 		BEC6AF861B344E0100A90F06 /* MMUsageBudgetThermoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMUsageBudgetThermoViewController.m; sourceTree = "<group>"; };
 		BEC7B5821B3ABD42003FB0D9 /* MMDaysAndPrice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDaysAndPrice.h; sourceTree = "<group>"; };
 		BEC7B5831B3ABD42003FB0D9 /* MMDaysAndPrice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDaysAndPrice.m; sourceTree = "<group>"; };
+		BED52D321B42635D001D1B98 /* MMGlobalClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMGlobalClass.h; sourceTree = "<group>"; };
+		BED52D331B42635D001D1B98 /* MMGlobalClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMGlobalClass.m; sourceTree = "<group>"; };
 		FB5BA5571A5A8CF400489CF6 /* MMAddressmapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMAddressmapViewController.h; sourceTree = "<group>"; };
 		FB5BA5581A5A8CF400489CF6 /* MMAddressmapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMAddressmapViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -356,6 +359,7 @@
 		41158BE316F1137C009FA140 /* OpenCVSample */ = {
 			isa = PBXGroup;
 			children = (
+				BED52D311B426160001D1B98 /* Global */,
 				8490871C1A16341600444C3D /* fonts */,
 				849087181A1633F300444C3D /* slideview */,
 				849086B51A1633B300444C3D /* camera */,
@@ -604,6 +608,15 @@
 			name = fonts;
 			sourceTree = "<group>";
 		};
+		BED52D311B426160001D1B98 /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				BED52D321B42635D001D1B98 /* MMGlobalClass.h */,
+				BED52D331B42635D001D1B98 /* MMGlobalClass.m */,
+			);
+			name = Global;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -693,6 +706,7 @@
 				41158C0216F113B7009FA140 /* AppDelegate.m in Sources */,
 				849086AB1A16338700444C3D /* UIImageView+HighlightedWebCache.m in Sources */,
 				849086621A1632E300444C3D /* MMUsageBudgetViewController.m in Sources */,
+				BED52D341B42635D001D1B98 /* MMGlobalClass.m in Sources */,
 				849087091A1633DE00444C3D /* MMSYNCViewController.m in Sources */,
 				849086A21A16338700444C3D /* SDWebImageDecoder.m in Sources */,
 				8490870F1A1633DE00444C3D /* MMUsageBudgetauditViewController.m in Sources */,
@@ -836,7 +850,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OpenCVSample/Supporting Files/OpenCVSample-Prefix.pch";
 				INFOPLIST_FILE = "OpenCVSample/Supporting Files/OpenCVSample-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = MyPOWR;
 				PROVISIONING_PROFILE = "0a27bd86-167a-4fce-a684-6dea3bccb78f";
 				VALID_ARCHS = "armv7 armv7s arm64";
@@ -860,7 +874,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OpenCVSample/Supporting Files/OpenCVSample-Prefix.pch";
 				INFOPLIST_FILE = "OpenCVSample/Supporting Files/OpenCVSample-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = MyPOWR;
 				PROVISIONING_PROFILE = "0a27bd86-167a-4fce-a684-6dea3bccb78f";
 				VALID_ARCHS = "armv7 armv7s arm64";

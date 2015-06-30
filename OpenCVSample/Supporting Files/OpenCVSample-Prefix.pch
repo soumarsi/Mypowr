@@ -10,10 +10,12 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
 #endif
+
 #ifdef _cplusplus
 #import <opencv2/opencv.hpp>
 #endif
 #define RGBCOLOR1(x,y,z,f) [UIColor colorWithRed:(x/1.0f) green:(y/1.0f) blue:(z/1.0f) alpha:f]
+
 #if !defined(DOMAIN_APP_URL)
 #define DOMAIN_APP_URL @"http://www.esolz.co.in/lab1/Web/myPower/"
 #endif

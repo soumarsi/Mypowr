@@ -20,7 +20,6 @@
     return GlobalClassObj;
     
     
-    
 }
 - (UIImage *) imageFromColor:(UIColor *)color {
     CGRect rect = CGRectMake(0, 0, 1, 1);

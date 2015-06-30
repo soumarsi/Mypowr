@@ -14,6 +14,7 @@
 #import "UIImageView+WebCache.h"
 #import "MMAppDelegate.h"
 #import "MMUsageBudgetThermoViewController.h"
+#import "MMGlobalClass.h"
 
 @interface MMUsageBudgetauditViewController ()<UIScrollViewDelegate>
 {
@@ -23,6 +24,7 @@
     NSMutableArray* ReturnArray;
     BOOL FirstTimeScroll;
     NSMutableArray *staticItemImage, *staticItemName, *staticItemWatt;
+    MMGlobalClass *globalFunc;
 }
 @end
 
@@ -51,8 +53,11 @@
 {
     [super viewDidLoad];
     
-    
     NSLog(@"MMUsageBudgetauditViewController");
+    
+    globalFunc = [[MMGlobalClass alloc]init];
+    
+    self.networkStatus = globalFunc.currentNetworkStatus;
     
     for (UIViewController *Vc in self.navigationController.viewControllers) {
  
@@ -119,7 +124,7 @@
     //usage button ..........
     
     usagebtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [usagebtn setFrame:CGRectMake(billbtn.frame.origin.x+billbtn.frame.size.width+40.0f,83.0f, 74/2, 65/2)];//251, 83.0f, 74/2, 65/2)];
+    [usagebtn setFrame:CGRectMake(billbtn.frame.origin.x+billbtn.frame.size.width+40.0f,90.0f, 74/2, 65/2)];//251, 83.0f, 74/2, 65/2)];
     [usagebtn setBackgroundImage:[UIImage imageNamed:@"usageimgbtn"] forState:UIControlStateNormal];
     [usagebtn setBackgroundImage:[UIImage imageNamed:@"usageimgbtn"] forState:UIControlStateHighlighted];
     [usagebtn addTarget:self action:@selector(usage:) forControlEvents:UIControlEventTouchUpInside];
@@ -348,41 +353,41 @@
         self.navigationController.interactivePopGestureRecognizer.enabled=NO;
     }
     
-    FirstTimeScroll=NO;
-    dispatch_queue_t Queue=dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
-    dispatch_async(Queue, ^{
+    if (self.networkStatus) {
         
-        ReturnArray=[[MMGlobalUrlClass GetInstance] GlobalUrlFire:@"device_list.php"];
-        
-        NSLog(@"RETURN ARRAY-----> %@",ReturnArray);
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
+        FirstTimeScroll=NO;
+        dispatch_queue_t Queue=dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
+        dispatch_async(Queue, ^{
             
-            MMAppDelegate *AppObj=[[UIApplication sharedApplication]delegate];
-            AppObj.ImageThumUrlArray=[ReturnArray copy];
+            ReturnArray=[[MMGlobalUrlClass GetInstance] GlobalUrlFire:@"device_list.php"];
             
-            //------------------Temporary array for static images and name. Remove when original item is fetched from API---------------//
+            NSLog(@"RETURN ARRAY-----> %@",ReturnArray);
             
-            staticItemImage = [[NSMutableArray alloc]init];
-            staticItemName = [[NSMutableArray alloc] init];
-            staticItemWatt = [[NSMutableArray alloc]init];
-            
-            for (int i = 0; i<20; i++) {
+            dispatch_async(dispatch_get_main_queue(), ^{
                 
-                //WithObjects:[UIImage imageNamed:@"PlasmaTV"], nil];
-                [staticItemImage addObject:[UIImage imageNamed:@"PlasmaTV"]];
-                [staticItemName addObject:@"Plasma TV"];
-                [staticItemWatt addObject:@"100W"];
-            }
-            
-            NSLog(@"STATIC IMAGE COUNT %lu------ NAME------ %@",(unsigned long)staticItemName.count,staticItemImage);
-            
-            ///----------------------------------------END------------------------------------------//
-            
-            
-            
-            if (staticItemImage.count > 0) {
-            //if ([ReturnArray count]>0) {  ------------Delete comment out when deleting the above code for static images and name
+                MMAppDelegate *AppObj=[[UIApplication sharedApplication]delegate];
+                AppObj.ImageThumUrlArray=[ReturnArray copy];
+                
+                //------------------Temporary array for static images and name. Remove when original item is fetched from API---------------//
+                
+                staticItemImage = [[NSMutableArray alloc]init];
+                staticItemName = [[NSMutableArray alloc] init];
+                staticItemWatt = [[NSMutableArray alloc]init];
+                
+                for (int i = 0; i<20; i++) {
+                    
+                    //WithObjects:[UIImage imageNamed:@"PlasmaTV"], nil];
+                    [staticItemImage addObject:[UIImage imageNamed:@"PlasmaTV"]];
+                    [staticItemName addObject:@"Plasma TV"];
+                    [staticItemWatt addObject:@"100W"];
+                }
+                
+                NSLog(@"STATIC IMAGE COUNT %lu------ NAME------ %@",(unsigned long)staticItemName.count,staticItemImage);
+                
+                ///----------------------------------------END------------------------------------------//
+                
+                
+                //if ([ReturnArray count]>0) {  ------------Delete comment out when deleting the above code for static images and name
                 
                 
                 UILabel *wattLabel = [[UILabel alloc]initWithFrame:CGRectMake(13.0f, 5.0f, 75.0f, 20.0f)];
@@ -416,7 +421,7 @@
                     wattLabel.text = [NSString stringWithFormat:@"%@",[staticItemWatt objectAtIndex:i]];
                     
                     //---------Remove code comment------/
-//                    wattLabel.text = [NSString stringWithFormat:@"%@",[[ReturnArray objectAtIndex:i] objectForKey:@"wattage"]];
+                    //                    wattLabel.text = [NSString stringWithFormat:@"%@",[[ReturnArray objectAtIndex:i] objectForKey:@"wattage"]];
                     wattLabel.font = [UIFont systemFontOfSize:12.0f];
                     wattLabel.textColor = [UIColor whiteColor];
                     [MainScroll addSubview:wattLabel];
@@ -429,7 +434,7 @@
                     
                     //---------Remove code comment------/
                     
-//                    [plasmatvimg sd_setImageWithURL:[NSURL URLWithString:[[ReturnArray objectAtIndex:i] objectForKey:@"device_image_thumb"]] placeholderImage:[UIImage imageNamed:@"NoImage.png"] options:i==0?SDWebImageRefreshCached:0];
+                    //                    [plasmatvimg sd_setImageWithURL:[NSURL URLWithString:[[ReturnArray objectAtIndex:i] objectForKey:@"device_image_thumb"]] placeholderImage:[UIImage imageNamed:@"NoImage.png"] options:i==0?SDWebImageRefreshCached:0];
                     [MainScroll addSubview:plasmatvimg];
                     
                     
@@ -441,7 +446,7 @@
                     [TitleLbl setText:[staticItemName objectAtIndex:i]];
                     
                     //---------Remove code comment------/
-//                    [TitleLbl setText:[[ReturnArray objectAtIndex:i] objectForKey:@"title"]];
+                    //                    [TitleLbl setText:[[ReturnArray objectAtIndex:i] objectForKey:@"title"]];
                     [MainScroll addSubview:TitleLbl];
                     
                     plasmatvimg.tag = i;
@@ -457,18 +462,19 @@
                 
                 [MainScroll setContentSize:CGSizeMake(plasmatvimg.frame.size.width*[ReturnArray count]+[ReturnArray count]*23.0f, MainScroll.frame.size.height)];
                 
-                
-            } else {
-                UIAlertView *ChangePassAlert=[[UIAlertView  alloc]initWithTitle:@"Alert!" message:@"check your internet connection" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-                ChangePassAlert.delegate=self;
-                [ChangePassAlert show];
-                
-                
-            }
-            
-            
+            });
         });
-    });
+
+    }else{
+        
+        NSLog(@"No Network Available");
+        
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"Please check your internet connectivity" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+
+        
+    }
+    
 }
 - (NSInteger)numberOfElementsInHorizontalPickerView:(V8HorizontalPickerView *)picker {
     

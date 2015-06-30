@@ -10,9 +10,14 @@
 #import "MMReportPoleViewController.h"
 #import "MMHomeViewController.h"
 #import "MMSvcViewController.h"
+#import "MMGlobalClass.h"
 #import <SystemConfiguration/SystemConfiguration.h>
 
-@interface MMReportViewController ()<UIAlertViewDelegate>
+@interface MMReportViewController ()<UIAlertViewDelegate>{
+    
+    MMGlobalClass *globalFunc;
+    
+}
 
 @end
 
@@ -29,33 +34,20 @@
 
 //----------------CHECK INTERNET STATUS------------//
 
-- (BOOL) currentNetworkStatus {
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    BOOL connected;
-    BOOL isConnected;
-    const char *host = "www.apple.com";
-    SCNetworkReachabilityRef reachability = SCNetworkReachabilityCreateWithName(NULL, host);
-    SCNetworkReachabilityFlags flags;
-    connected = SCNetworkReachabilityGetFlags(reachability, &flags);
-    isConnected = NO;
-    isConnected = connected && (flags & kSCNetworkFlagsReachable) && !(flags & kSCNetworkFlagsConnectionRequired);
-    CFRelease(reachability);
-    return isConnected;
-}
-//- (BOOL)CheckInternet
-//{
-//    BOOL network = [self currentNetworkStatus];
-//    
-//    if(network)
-//    {
-//        NSLog(@"Network Available");
-//        return YES;
-//    }
-//    else
-//    {
-//        NSLog(@"No Network Available");
-//    }
+//- (BOOL) currentNetworkStatus {
+//    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+//    BOOL connected;
+//    BOOL isConnected;
+//    const char *host = "www.apple.com";
+//    SCNetworkReachabilityRef reachability = SCNetworkReachabilityCreateWithName(NULL, host);
+//    SCNetworkReachabilityFlags flags;
+//    connected = SCNetworkReachabilityGetFlags(reachability, &flags);
+//    isConnected = NO;
+//    isConnected = connected && (flags & kSCNetworkFlagsReachable) && !(flags & kSCNetworkFlagsConnectionRequired);
+//    CFRelease(reachability);
+//    return isConnected;
 //}
+
 //--------------------------------------------------//
 
 - (void)viewDidLoad
@@ -64,9 +56,13 @@
     
     NSLog(@"mmreportviewcontroller");
     
+    globalFunc = [[MMGlobalClass alloc]init];
+    
 //    [self CheckInternet];
     
-    self.network = [self currentNetworkStatus];
+//    self.network = [self currentNetworkStatus];
+    
+    self.network = globalFunc.currentNetworkStatus;
     
     if(self.network)
     {

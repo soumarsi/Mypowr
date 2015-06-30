@@ -29,5 +29,6 @@
 @property (nonatomic,retain ) NSString *DollarIntLblStr;
 @property (nonatomic,retain ) NSString *DollarFractionLblStr;
 @property (nonatomic, strong) IBOutlet V8HorizontalPickerView *pickerView;
+@property (nonatomic)BOOL networkStatus;
 
 @end
