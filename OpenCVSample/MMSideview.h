@@ -14,8 +14,8 @@
     UIView *SideView;
     UIImageView *Upperlogo;
     UILabel *upperlogotext;
-    UIButton *usagebtn,*meterbtn,*budgetbtn,*Callbtn,*mapbtn,*outagebtn,*settingsbtn;
-    UILabel *Usagelabl,*meterlbl,*budgetlbl,*Reportlbl,*maplbl,*outagelbl,*settingslbl;
+    UIButton *usagebtn,*meterbtn,*budgetbtn,*Callbtn,*mapbtn,*outagebtn,*settingsbtn,*billbtn,*printbtn,*servicecallbtn;
+    UILabel *Usagelabl,*meterlbl,*budgetlbl,*Reportlbl,*maplbl,*outagelbl,*settingslbl,*billlbl,*printlbl,*servicecallbl;
     
 }
 

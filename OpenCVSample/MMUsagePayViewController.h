@@ -17,8 +17,10 @@
     MMSideview *leftMenu;
     BOOL menuOpened;
     UIButton *budgetbtn,*billbtn,*usagebtn,*phillbtn,*Backbtn,*Savebtn;
-    UIButton *paymethod,*Sharebillbtn,*cancelbtn,*paybillbutton;
+    UIButton *back,*Sharebillbtn,*cancelbtn,*paybillbutton;
     UILabel *UserName,*UserVisa,*UserAcct;
+    UIButton *checkbox;
 }
+
 
 @end
