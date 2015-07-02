@@ -64,10 +64,10 @@
     
     NSLog(@"MMBudgetProductDayHourViewController");
     
-     IsImageChoosed=NO;
+    IsImageChoosed=NO;
     WattagePicked=NO;
-     PickerArray=[[NSArray alloc]initWithObjects:@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10",@"11",@"12",@"13",@"14",@"15",@"16",@"17",@"18",@"19",@"20",@"21",@"22",@"23",@"24",@"25",@"26",@"27",@"28",@"29",@"30", nil];
-      //NSArray *ImageTitleArray=[[NSArray alloc]initWithObjects:@"plasmatvimg",@"heaterSmall",nil];
+    PickerArray=[[NSArray alloc]initWithObjects:@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10",@"11",@"12",@"13",@"14",@"15",@"16",@"17",@"18",@"19",@"20",@"21",@"22",@"23",@"24",@"25",@"26",@"27",@"28",@"29",@"30", nil];
+    //NSArray *ImageTitleArray=[[NSArray alloc]initWithObjects:@"plasmatvimg",@"heaterSmall",nil];
     leftMenu = [[MMSideview alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.view addSubview:leftMenu];
     
@@ -135,7 +135,7 @@
     //bill button ..........
     
     billbtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [billbtn setFrame:CGRectMake(148.0f, 82.0f, 70/2, 84/2)];
+    [billbtn setFrame:CGRectMake(108.0f, 82.0f, 70/2, 84/2)];
     [billbtn setBackgroundImage:[UIImage imageNamed:@"Billselectedbtn"] forState:UIControlStateNormal];
     [billbtn setBackgroundImage:[UIImage imageNamed:@"Billselectedbtn"] forState:UIControlStateHighlighted];
     [billbtn addTarget:self action:@selector(bill:) forControlEvents:UIControlEventTouchUpInside];
@@ -145,7 +145,7 @@
     //usage button ..........
     
     usagebtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [usagebtn setFrame:CGRectMake(251, 91.0f, 74/2, 65/2)];
+    [usagebtn setFrame:CGRectMake(187, 91.0f, 74/2, 65/2)];
     [usagebtn setBackgroundImage:[UIImage imageNamed:@"usageimgbtn"] forState:UIControlStateNormal];
     [usagebtn setBackgroundImage:[UIImage imageNamed:@"usageimgbtn"] forState:UIControlStateHighlighted];
     [usagebtn addTarget:self action:@selector(usage:) forControlEvents:UIControlEventTouchUpInside];
@@ -154,20 +154,20 @@
     
     //phill button ..........
     
-//    phillbtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [phillbtn setFrame:CGRectMake(255, 84.0f, 56/2, 78/2)];
-//    [phillbtn setBackgroundImage:[UIImage imageNamed:@"phillimgbtn"] forState:UIControlStateNormal];
-//    [phillbtn setBackgroundImage:[UIImage imageNamed:@"phillimgbtn"] forState:UIControlStateHighlighted];
-//    //[phillbtn addTarget:self action:@selector(phill:) forControlEvents:UIControlEventTouchUpInside];
-//    [MainView addSubview:phillbtn];
+    phillbtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [phillbtn setFrame:CGRectMake(265, 84.0f, 56/2, 78/2)];
+    [phillbtn setBackgroundImage:[UIImage imageNamed:@"phillimgbtn"] forState:UIControlStateNormal];
+    [phillbtn setBackgroundImage:[UIImage imageNamed:@"phillimgbtn"] forState:UIControlStateHighlighted];
+    //[phillbtn addTarget:self action:@selector(phill:) forControlEvents:UIControlEventTouchUpInside];
+    [MainView addSubview:phillbtn];
     
-
+    
     
     
     
     //START DOLLAR LABEL
     DollarLbl = [[UILabel alloc]initWithFrame:CGRectMake(40.0f, 125.0f, 15.0f, 60.0f)];
-   
+    
     [DollarLbl setText:@"$"];
     [DollarLbl setTextAlignment:NSTextAlignmentLeft];
     [DollarLbl setTextColor:[UIColor whiteColor]];
@@ -262,7 +262,7 @@
     [MainView addSubview:DynamicMonthLbl];
     
     
-
+    
     _DollarBracketStr=@"0.56";
     BracketLbl=[[UILabel alloc]init];
     [BracketLbl setText:[NSString stringWithFormat:@"($%@)",_DollarBracketStr]];
@@ -273,13 +273,13 @@
     BracketLbl.font=[UIFont fontWithName:@"Arial" size:14];
     
     NSDictionary *BrackAttDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                                           [UIFont fontWithName:@"Arial" size:14], NSFontAttributeName,
-                                           nil];
+                                  [UIFont fontWithName:@"Arial" size:14], NSFontAttributeName,
+                                  nil];
     
- CGRect   frame76 = [BracketLbl.text boundingRectWithSize:CGSizeMake(263, 2000.0)
-                                                   options:NSStringDrawingUsesLineFragmentOrigin
-                                                attributes:BrackAttDict
-                                                   context:nil];
+    CGRect   frame76 = [BracketLbl.text boundingRectWithSize:CGSizeMake(263, 2000.0)
+                                                     options:NSStringDrawingUsesLineFragmentOrigin
+                                                  attributes:BrackAttDict
+                                                     context:nil];
     
     BracketLbl.backgroundColor=[UIColor clearColor];
     
@@ -292,7 +292,7 @@
     ////START CURRENT DAILY USAGE LABEL
     
     CurrentDailyUsage = [[UILabel alloc]initWithFrame:CGRectMake(11.0f,240.0f, 100.0f, 26.0f)];
-    [CurrentDailyUsage setText:@"Current"];
+    [CurrentDailyUsage setText:@"Now"];
     [CurrentDailyUsage setTextAlignment:NSTextAlignmentCenter];
     [CurrentDailyUsage setTextColor:[UIColor whiteColor]];
     CurrentDailyUsage.numberOfLines = 1;
@@ -323,8 +323,20 @@
     
     ///  END OF NEW DAILY LABEL
     
-///////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////
     
+    ////////////----------BOX IMAGE VIEW----------/////////
+    
+    UIImageView *boximg=[[UIImageView alloc]initWithFrame:CGRectMake(0, CurrDollarIntLbl.frame.origin.y+CurrDollarIntLbl.frame.size.height+265, 249/2, 90)];
+    [boximg setImage:[UIImage imageNamed:@"boximg"]];
+    [boximg setUserInteractionEnabled:YES];
+    [MainView addSubview:boximg];
+    
+    
+    UIImageView *boximg2=[[UIImageView alloc]initWithFrame:CGRectMake(self.view.frame.size.width-125, CurrDollarIntLbl.frame.origin.y+CurrDollarIntLbl.frame.size.height+265, 249/2, 90)];
+    [boximg2 setImage:[UIImage imageNamed:@"boximg2"]];
+    [boximg2 setUserInteractionEnabled:YES];
+    [MainView addSubview:boximg2];
     
     
     
@@ -335,7 +347,7 @@
     [CurrDollarLbl setTextAlignment:NSTextAlignmentLeft];
     [CurrDollarLbl setTextColor:[UIColor whiteColor]];
     CurrDollarLbl.numberOfLines = 1;
-   
+    
     [CurrDollarLbl setFont:[UIFont fontWithName:@"Arial" size:20]];
     
     [MainView addSubview:CurrDollarLbl];
@@ -355,13 +367,13 @@
     CurrDollarIntLbl.font=[UIFont fontWithName:@"Arial" size:36];
     
     NSDictionary *IntDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                                          [UIFont fontWithName:@"Arial" size:36], NSFontAttributeName,
-                                          nil];
+                             [UIFont fontWithName:@"Arial" size:36], NSFontAttributeName,
+                             nil];
     
     frame85 = [CurrDollarIntLbl.text boundingRectWithSize:CGSizeMake(263, 2000.0)
-                                              options:NSStringDrawingUsesLineFragmentOrigin
-                                           attributes:IntDict
-                                              context:nil];
+                                                  options:NSStringDrawingUsesLineFragmentOrigin
+                                               attributes:IntDict
+                                                  context:nil];
     
     CurrDollarIntLbl.backgroundColor=[UIColor clearColor];
     
@@ -380,13 +392,13 @@
     CurrDollarFractionLbl.font=[UIFont fontWithName:@"Arial" size:18];
     
     NSDictionary *FracDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                                           [UIFont fontWithName:@"Arial" size:18], NSFontAttributeName,
-                                           nil];
+                              [UIFont fontWithName:@"Arial" size:18], NSFontAttributeName,
+                              nil];
     
     frame85 = [CurrDollarFractionLbl.text boundingRectWithSize:CGSizeMake(263, 2000.0)
-                                                   options:NSStringDrawingUsesLineFragmentOrigin
-                                                attributes:FracDict
-                                                   context:nil];
+                                                       options:NSStringDrawingUsesLineFragmentOrigin
+                                                    attributes:FracDict
+                                                       context:nil];
     
     CurrDollarFractionLbl.backgroundColor=[UIColor clearColor];
     
@@ -416,10 +428,10 @@
     // END OF DOLLAR LABEL
     
     //  START OF DOLLAR VALUE LABEL
-   frame85 =CGRectMake(0, 0, 0, 0);
+    frame85 =CGRectMake(0, 0, 0, 0);
     _NewDollarIntLblStr=@"0";
     
-   NewDollarIntLbl=[[UILabel alloc]init];
+    NewDollarIntLbl=[[UILabel alloc]init];
     [NewDollarIntLbl setText:[NSString stringWithFormat:@"%@.",_NewDollarIntLblStr]];
     
     NewDollarIntLbl.textAlignment=NSTextAlignmentLeft;
@@ -428,13 +440,13 @@
     NewDollarIntLbl.font=[UIFont fontWithName:@"Arial" size:36];
     
     IntDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                             [UIFont fontWithName:@"Arial" size:36], NSFontAttributeName,
-                             nil];
+               [UIFont fontWithName:@"Arial" size:36], NSFontAttributeName,
+               nil];
     
     frame85 = [NewDollarIntLbl.text boundingRectWithSize:CGSizeMake(263, 2000.0)
-                                                  options:NSStringDrawingUsesLineFragmentOrigin
-                                               attributes:IntDict
-                                                  context:nil];
+                                                 options:NSStringDrawingUsesLineFragmentOrigin
+                                              attributes:IntDict
+                                                 context:nil];
     
     NewDollarIntLbl.backgroundColor=[UIColor clearColor];
     
@@ -444,7 +456,7 @@
     
     
     _NewDollarFractionLblStr=@"56";
-   NewDollarFractionLbl=[[UILabel alloc]init];
+    NewDollarFractionLbl=[[UILabel alloc]init];
     [NewDollarFractionLbl setText:[NSString stringWithFormat:@"%@",_NewDollarFractionLblStr]];
     
     NewDollarFractionLbl.textAlignment=NSTextAlignmentLeft;
@@ -452,14 +464,14 @@
     
     NewDollarFractionLbl.font=[UIFont fontWithName:@"Arial" size:18];
     
-  FracDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                              [UIFont fontWithName:@"Arial" size:18], NSFontAttributeName,
-                              nil];
+    FracDict = [NSDictionary dictionaryWithObjectsAndKeys:
+                [UIFont fontWithName:@"Arial" size:18], NSFontAttributeName,
+                nil];
     
     frame85 = [NewDollarFractionLbl.text boundingRectWithSize:CGSizeMake(263, 2000.0)
-                                                       options:NSStringDrawingUsesLineFragmentOrigin
-                                                    attributes:FracDict
-                                                       context:nil];
+                                                      options:NSStringDrawingUsesLineFragmentOrigin
+                                                   attributes:FracDict
+                                                      context:nil];
     
     NewDollarFractionLbl.backgroundColor=[UIColor clearColor];
     
@@ -467,16 +479,16 @@
     
     [MainView addSubview:NewDollarFractionLbl];
     
-
-//////////////////////////////////////////////////////////////////
+    
+    //////////////////////////////////////////////////////////////////
     
     
     //START OF LEFT BACK LABEL
     
-    UIImageView *LeftImageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, CurrDollarIntLbl.frame.origin.y+CurrDollarIntLbl.frame.size.height+1, 249/2, 90/2)];
-    [LeftImageView setImage:[UIImage imageNamed:@"RightHourDayImage"]];
-    [LeftImageView setUserInteractionEnabled:YES];
-    [MainView addSubview:LeftImageView];
+    //    UIImageView *LeftImageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, CurrDollarIntLbl.frame.origin.y+CurrDollarIntLbl.frame.size.height+1, 249/2, 90/2)];
+    //    [LeftImageView setImage:[UIImage imageNamed:@"RightHourDayImage"]];
+    //    [LeftImageView setUserInteractionEnabled:YES];
+    //    [MainView addSubview:LeftImageView];
     
     
     //  END OF  LEFT BACK LABEL
@@ -488,26 +500,26 @@
     RightImageView=[[UIImageView alloc]initWithFrame:CGRectMake(MainScreenWidth-249/2, CurrDollarIntLbl.frame.origin.y+CurrDollarIntLbl.frame.size.height+1, 249/2, 90/2)];
     [RightImageView setImage:[UIImage imageNamed:@"LeftHourDayImage"]];
     [RightImageView setUserInteractionEnabled:YES];
-    [MainView addSubview:RightImageView];
+    //[MainView addSubview:RightImageView];
     
     
     //  END OF  Right BACK LABEL
     
     NSArray *HousDayTitle=[[NSArray alloc]initWithObjects:@"4",@"2", nil];
-   
-   
+    
+    
     PreFrame=CGRectMake(0, 0, 0, 0);
     for (int i=0; i<[HousDayTitle count]; i++) {
-         UILabel *HourDayLbl=[[UILabel alloc]initWithFrame:CGRectMake(3, 0,RightImageView.frame.size.width-6,RightImageView.frame.size.height)];
+        UILabel *HourDayLbl=[[UILabel alloc]initWithFrame:CGRectMake(3, 45,RightImageView.frame.size.width-6,RightImageView.frame.size.height)];
         HourDayLbl.tag=i;
         if (i<1) {
             
-            [LeftImageView addSubview:HourDayLbl];
+            [boximg addSubview:HourDayLbl];
             [HourDayLbl setText:[NSString stringWithFormat:@"%@ hours/day",_CurrUsageStrByDay]];
         }
         else
         {
-            [RightImageView addSubview:HourDayLbl];
+            [boximg2 addSubview:HourDayLbl];
             [HourDayLbl setText:[NSString stringWithFormat:@"%@ hours/day",_NewUsageStrByDay]];
         }
         
@@ -528,7 +540,7 @@
         
         
         [HourDayLbl setUserInteractionEnabled:YES];
-       
+        
         
         PreFrame=HourDayLbl.frame;
         PreFrame.origin.y=HourDayLbl.frame.origin.y+HourDayLbl.frame.size.height;
@@ -538,10 +550,19 @@
         
     }
     
-   
+    
     
     /////  start of the middle image
-    [self middleimagescroll];
+    //[self middleimagescroll];
+    
+    //------------------PLASMA TV IMAGE VIEW-------------//
+    
+    UIImageView *plasmaimg=[[UIImageView alloc]initWithFrame:CGRectMake(125,420,70,80)];
+    [plasmaimg setImage:[UIImage imageNamed:@"newplasmatv"]];
+    plasmaimg.image = [plasmaimg.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [plasmaimg setTintColor:[UIColor whiteColor]];
+    //[LeftImageView setUserInteractionEnabled:YES];
+    [MainView addSubview:plasmaimg];
     
     
     
@@ -556,25 +577,25 @@
     [MainView addSubview:UsBackView8];
     
     
-    footerbudgtbtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [footerbudgtbtn setFrame:CGRectMake(20.0f, 5.0f, 31.5f, 35.0f)];
-    [footerbudgtbtn setBackgroundImage:[UIImage imageNamed:@"footerbudght"] forState:UIControlStateNormal];
-    [footerbudgtbtn setBackgroundImage:[UIImage imageNamed:@"footerbudght"] forState:UIControlStateHighlighted];
-    [footerbudgtbtn addTarget:self action:@selector(footerBudgetFunction:) forControlEvents:UIControlEventTouchUpInside];
-    [UsBackView8 addSubview:footerbudgtbtn];
+    //    footerbudgtbtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    //    [footerbudgtbtn setFrame:CGRectMake(20.0f, 5.0f, 31.5f, 35.0f)];
+    //    [footerbudgtbtn setBackgroundImage:[UIImage imageNamed:@"footerbudght"] forState:UIControlStateNormal];
+    //    [footerbudgtbtn setBackgroundImage:[UIImage imageNamed:@"footerbudght"] forState:UIControlStateHighlighted];
+    //    [footerbudgtbtn addTarget:self action:@selector(footerBudgetFunction:) forControlEvents:UIControlEventTouchUpInside];
+    //    [UsBackView8 addSubview:footerbudgtbtn];
     
     
     footerauditbtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [footerauditbtn setFrame:CGRectMake(85.0f, 5.0f, 23.0f, 33.0f)];
-    [footerauditbtn setBackgroundImage:[UIImage imageNamed:@"footerselectedauditbudht"] forState:UIControlStateNormal];
-    [footerauditbtn setBackgroundImage:[UIImage imageNamed:@"footerselectedauditbudht"] forState:UIControlStateHighlighted];
+    [footerauditbtn setFrame:CGRectMake(88.0f,-5.0f, 53.0f, 53.0f)];
+    [footerauditbtn setBackgroundImage:[UIImage imageNamed:@"footerdeselectauditbtn"] forState:UIControlStateNormal];
+    [footerauditbtn setBackgroundImage:[UIImage imageNamed:@"footerdeselectauditbtn"] forState:UIControlStateHighlighted];
     [footerauditbtn addTarget:self action:@selector(footerAuditFunction:) forControlEvents:UIControlEventTouchUpInside];
     [UsBackView8 addSubview:footerauditbtn];
     
     
     FooterRemoveBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     
-    [FooterRemoveBtn setFrame:CGRectMake(146.0f, 3.0f, 71.0f/2, 72/2.0f)];
+    [FooterRemoveBtn setFrame:CGRectMake(203.0f, 3.0f, 71.0f/2, 72/2.0f)];
     [FooterRemoveBtn setBackgroundImage:[UIImage imageNamed:@"FooterRemoveImage"] forState:UIControlStateNormal];
     [FooterRemoveBtn setBackgroundImage:[UIImage imageNamed:@"FooterRemoveImage"] forState:UIControlStateHighlighted];
     [FooterRemoveBtn addTarget:self action:@selector(footerRemoveFunction:) forControlEvents:UIControlEventTouchUpInside];
@@ -584,7 +605,7 @@
     
     footercontinuebtn = [UIButton buttonWithType:UIButtonTypeCustom];
     
-    [footercontinuebtn setFrame:CGRectMake(213.0f, 3.0f, 30.0f, 70/2.0f)];
+    [footercontinuebtn setFrame:CGRectMake(270.0f, 3.0f, 30.0f, 70/2.0f)];
     [footercontinuebtn setBackgroundImage:[UIImage imageNamed:@"FooterDeviceImage"] forState:UIControlStateNormal];
     [footercontinuebtn setBackgroundImage:[UIImage imageNamed:@"FooterDeviceImage"] forState:UIControlStateHighlighted];
     [footercontinuebtn addTarget:self action:@selector(footerDeviceFunction:) forControlEvents:UIControlEventTouchUpInside];
@@ -595,22 +616,22 @@
     
     
     footerBackbtn = [UIButton buttonWithType:UIButtonTypeCustom];
-   
-    [footerBackbtn setFrame:CGRectMake(274.0f, 3.0f,54/2 , 35.0f)];
+    
+    [footerBackbtn setFrame:CGRectMake(20.0f, 3.0f,54/2 , 35.0f)];
     [footerBackbtn setBackgroundImage:[UIImage imageNamed:@"BackFooterImage"] forState:UIControlStateNormal];
     [footerBackbtn setBackgroundImage:[UIImage imageNamed:@"BackFooterImage"] forState:UIControlStateHighlighted];
     [footerBackbtn addTarget:self action:@selector(footerBackFunction:) forControlEvents:UIControlEventTouchUpInside];
     [UsBackView8 addSubview:footerBackbtn];
-
+    
     
     
     // Do any additional setup after loading the view.
-
-
-
     
     
-
+    
+    
+    
+    
     
     
     
@@ -622,7 +643,7 @@
 
 -(void)tapToRemove:(UIGestureRecognizer *)Gesture
 {
-   
+    
     for (UIView *SubViews in ContacinerScroll.subviews) {
         if ([SubViews isKindOfClass:NSClassFromString(@"UIView")] &&![SubViews isKindOfClass:NSClassFromString(@"UILabel")] &&![SubViews isKindOfClass:NSClassFromString(@"UIImageView")]) {
             UIView *Get_View=(UIView *)SubViews;
@@ -638,7 +659,7 @@
     }
     
     
-   
+    
 }
 
 -(void)middleimagescroll
@@ -704,7 +725,7 @@
     }
     
     [ContacinerScroll setContentSize:CGSizeMake([AppObj.ImageThumUrlArray count]*100+100, ContacinerScroll.frame.size.height)];
-
+    
 }
 -(void)tapOnHourDay:(UIGestureRecognizer *)Gesture
 {
@@ -719,7 +740,7 @@
 }
 -(void)footerAuditFunction:(UIButton *)sender
 {
-   
+    
     
 }
 -(void)footerRemoveFunction:(UIButton *)sender
@@ -733,16 +754,16 @@
         for (UIView *SubViews in ContacinerScroll.subviews) {
             if ([SubViews isKindOfClass:NSClassFromString(@"UIView")] &&![SubViews isKindOfClass:NSClassFromString(@"UILabel")] &&![SubViews isKindOfClass:NSClassFromString(@"UIImageView")]) {
                 UIView *Get_View=(UIView *)SubViews;
-               
+                
                 if (Get_View.tag==SelectedDeviceToRemoveTag) {
                     
                     SelectedToRemove=NO;
-                  
+                    
                     [Get_View removeFromSuperview];
                     dispatch_queue_t Queue=dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
                     dispatch_async(Queue, ^{
-                       
-                     NSString *Str=[[MMGlobalUrlClass GetInstance] GlobalUrlFireToGetResponseString:[NSString stringWithFormat:@"remove_device.php?id=%d",[[[AppObj.ImageThumUrlArray objectAtIndex:(int)Get_View.tag] objectForKey:@"id"] intValue]]];
+                        
+                        NSString *Str=[[MMGlobalUrlClass GetInstance] GlobalUrlFireToGetResponseString:[NSString stringWithFormat:@"remove_device.php?id=%d",[[[AppObj.ImageThumUrlArray objectAtIndex:(int)Get_View.tag] objectForKey:@"id"] intValue]]];
                         
                         dispatch_async(dispatch_get_main_queue(), ^{
                             if ([Str  isEqualToString:@"success"]) {
@@ -751,23 +772,23 @@
                                                      ]initWithTitle:@"Alert" message:@"device successfuly removed " delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
                                 [alert show];
                                 alert.delegate=self;
-
+                                
                                 [ContacinerScroll setContentSize:CGSizeMake(ContacinerScroll.contentSize.width-100, ContacinerScroll.frame.size.height)];
                             } else {
                                 UIAlertView *alert=[[UIAlertView alloc
                                                      ]initWithTitle:@"Error" message:@"device not removed" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
                                 [alert show];
                                 alert.delegate=self;
-
+                                
                             }
                             
                             
                         });
                     });
-
-                   
                     
-                   
+                    
+                    
+                    
                 }
                 
                 
@@ -776,13 +797,13 @@
                 }
             }
         }
-
+        
         
         
     }
     
     else
-    
+        
     {
         UIAlertView *alert=[[UIAlertView alloc
                              ]initWithTitle:@"Alert" message:@"Please select device to remove" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
@@ -791,15 +812,15 @@
     }
     
     
-   
+    
 }
 -(void)footerBackFunction:(UIButton *)sender
 {
     
     
-   
+    
     [[self navigationController]popViewControllerAnimated:NO];
-   
+    
     
 }
 -(void)footerDeviceFunction:(UIButton *)sender
@@ -821,7 +842,7 @@
     DeviceTitleField=[[UITextField alloc]initWithFrame:CGRectMake(DevicePopUpBackView.frame.size.width/2-200/2, 10, 200, 30)];
     
     DeviceTitleField.delegate=self;
-
+    
     DeviceTitleField.attributedPlaceholder=[[NSAttributedString alloc] initWithString:@"Enter Device Name" attributes:@{NSForegroundColorAttributeName: RGBCOLOR(108, 108, 108, 1)}];
     DeviceTitleField.textAlignment=NSTextAlignmentCenter;
     DeviceTitleField.font=[UIFont systemFontOfSize:14];
@@ -837,11 +858,11 @@
     DeviceWattage.backgroundColor=[UIColor clearColor];
     DeviceWattage.textAlignment=NSTextAlignmentCenter;
     
-   DeviceImageView=[[UIImageView alloc]initWithFrame:CGRectMake(10, DeviceWattage.frame.size.height+DeviceWattage.frame.origin.y+15, 80, 80)];
+    DeviceImageView=[[UIImageView alloc]initWithFrame:CGRectMake(10, DeviceWattage.frame.size.height+DeviceWattage.frame.origin.y+15, 80, 80)];
     
     [DevicePopUpBackView  addSubview:DeviceImageView];
     DeviceImageView.backgroundColor=[UIColor clearColor];
- 
+    
     UIButton *CameraBtn=[UIButton buttonWithType:UIButtonTypeCustom];
     [CameraBtn setFrame:CGRectMake(DeviceImageView.frame.origin.x+20+DeviceImageView.frame.size.width,DeviceWattage.frame.origin.y+DeviceWattage.frame.size.height+15, 140, 40)];
     [CameraBtn setBackgroundImage:[[MMGlobalFunctionClass GetInstance] imageFromColor:RGBCOLOR(156, 185, 207, 1)] forState:UIControlStateNormal];
@@ -880,9 +901,9 @@
     
     
     
-   
+    
     //[DeviceBtn addTarget:self action:@selector(CretingPopUpForEditUserImage) forControlEvents:UIControlEventTouchUpInside];
-
+    
     UIButton *CancelBtn=[UIButton buttonWithType:UIButtonTypeCustom];
     
     [CancelBtn setFrame:CGRectMake(DeviceImageView.frame.origin.x,DeviceImageView.frame.origin.y+DeviceImageView.frame.size.height+20, 110, 40)];
@@ -910,12 +931,12 @@
     [DeviceAddBtn setTitle:@"Done" forState:UIControlStateHighlighted];
     [DeviceAddBtn setTitle:@"Done" forState:UIControlStateSelected];
     [DeviceAddBtn setTitle:@"Done" forState:UIControlStateNormal];
-   
+    
     [DevicePopUpBackView addSubview:DeviceAddBtn];
-   
+    
     [DeviceAddBtn addTarget:self action:@selector(saveImageToServer) forControlEvents:UIControlEventTouchUpInside];
     
-   
+    
     
 }
 -(void)Cancel
@@ -924,7 +945,7 @@
 }
 
 -(void)menu:(UIButton *)sender{
-
+    
     if(MainView.frame.origin.x > 100.0f) {
         
         [UIView animateWithDuration:0.3
@@ -968,10 +989,10 @@
     IsImageChoosed=YES;
     
     [self dismissViewControllerAnimated:NO completion:^{
-
+        
         ChoosedImage=chosenImage;
         [DeviceImageView setImage:ChoosedImage];
-
+        
         
         //[self saveImageToServer];
     }];
@@ -980,11 +1001,11 @@
 
 -(void)LibraryOptionChoosed
 {
-
+    
     if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum]) {
         
         [[UIApplication sharedApplication]setStatusBarHidden:YES];
-
+        
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         picker.delegate = (id)self;
         picker.allowsEditing = YES;
@@ -1016,13 +1037,13 @@
     if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         
         [[UIApplication sharedApplication]setStatusBarHidden:YES];
-
+        
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         picker.delegate = (id)self;
         picker.allowsEditing = YES;
         picker.sourceType = UIImagePickerControllerSourceTypeCamera;
         [self presentViewController:picker animated:YES completion:nil];
-  
+        
     }
     else
     {
@@ -1049,7 +1070,7 @@
         Alert.delegate=self;
         return;
     }
-   else if ([DeviceWattage.text length]==0) {
+    else if ([DeviceWattage.text length]==0) {
         UIAlertView *Alert=[[UIAlertView alloc]initWithTitle:@"Error" message:@"Select Wattage" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [Alert show];
         Alert.delegate=self;
@@ -1062,102 +1083,102 @@
         return;
     }
     
-   else if(!IsImageChoosed){
+    else if(!IsImageChoosed){
         UIAlertView *Alert=[[UIAlertView alloc]initWithTitle:@"Error" message:@"Choose device image" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [Alert show];
         Alert.delegate=self;
         return;
     }
-   else{
-       
-       spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-       spinner.center = CGPointMake(130, 215);
-       spinner.hidesWhenStopped = YES;
-       [DevicePopUpBackView addSubview:spinner];
-       [spinner startAnimating];
-       
-       CGSize size = ChoosedImage.size;
-       CGFloat ratio = 0;
-       if (size.width > size.height) {
-           ratio = 100.0 / size.width;
-       }
-       else {
-           ratio = 100.0 / size.height;
-       }
-       CGRect rect = CGRectMake(0.0, 0.0, ratio * size.width, ratio * size.height);
-       
-       UIGraphicsBeginImageContext(rect.size);
-       [ChoosedImage drawInRect:rect];
-       UIImage *thumbnail = UIGraphicsGetImageFromCurrentImageContext();
-       UIGraphicsEndImageContext();
-       
-    reportQueue = [[NSOperationQueue alloc]init];
-    
-    [reportQueue addOperationWithBlock:^{
+    else{
         
-    
-    NSString *ReportPoleStr = [[NSString alloc]init];
-    
-    ReportPoleStr = [NSString stringWithFormat:@"http://www.esolz.co.in/lab1/Web/myPower/add_device.php?user_id=%@&title=%@&wattage=%@",[[NSUserDefaults standardUserDefaults]objectForKey:@"id"],DeviceTitleField.text,DeviceWattage.text];
-    
-
-    NSString* urlTextEscaped = [ReportPoleStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
-    [request setHTTPShouldHandleCookies:NO];
-    [request setURL:[NSURL URLWithString:urlTextEscaped]];
-    [request setTimeoutInterval:10];
-    [request setHTTPMethod:@"POST"];
-
-    NSData *imageData=[NSData dataWithData:UIImageJPEGRepresentation(thumbnail, 1)];
-    
-    if ( [imageData length] > 0)
-        //   if (pic_send ==1)
-    {
-        NSString *boundary = [NSString stringWithFormat:@"%0.9u",arc4random()];
-        NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary];
-        [request addValue:contentType forHTTPHeaderField:@"Content-Type"];
-        NSMutableData *body = [NSMutableData data];
-        [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"deviceimage\"; filename=\".jpg\"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
-        [body appendData:[[NSString stringWithFormat:@"Content-Type: application/octet-stream\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
-        [body appendData:imageData];
-        [body appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-        [request setHTTPBody:body];
-    }
-    NSError *error = nil;
-    NSURLResponse *response = nil;
-    NSData *returnData1 = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-    if(error)
-    {
-        return ;
-    }
-
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        spinner.center = CGPointMake(130, 215);
+        spinner.hidesWhenStopped = YES;
+        [DevicePopUpBackView addSubview:spinner];
+        [spinner startAnimating];
+        
+        CGSize size = ChoosedImage.size;
+        CGFloat ratio = 0;
+        if (size.width > size.height) {
+            ratio = 100.0 / size.width;
+        }
+        else {
+            ratio = 100.0 / size.height;
+        }
+        CGRect rect = CGRectMake(0.0, 0.0, ratio * size.width, ratio * size.height);
+        
+        UIGraphicsBeginImageContext(rect.size);
+        [ChoosedImage drawInRect:rect];
+        UIImage *thumbnail = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        reportQueue = [[NSOperationQueue alloc]init];
+        
+        [reportQueue addOperationWithBlock:^{
             
-                 NSString *responseString = [[NSString alloc] initWithData:returnData1 encoding:NSUTF8StringEncoding];
-                 
-                 if ([responseString isEqualToString:@"success"])
-                 {
-                     UIAlertView *Alert=[[UIAlertView alloc]initWithTitle:@"Message" message:@"Device successfully added" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-                     [Alert show];
-                     Alert.delegate=self;
-                     
-                     
-                     [self loadimage];
-                 }
-                 else {
-                     UIAlertView *Alert=[[UIAlertView alloc]initWithTitle:@"Error" message:@"Device has not been added" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-                     [Alert show];
-                     Alert.delegate=self;
-                 }
-
             
-            [spinner stopAnimating];
+            NSString *ReportPoleStr = [[NSString alloc]init];
+            
+            ReportPoleStr = [NSString stringWithFormat:@"http://www.esolz.co.in/lab1/Web/myPower/add_device.php?user_id=%@&title=%@&wattage=%@",[[NSUserDefaults standardUserDefaults]objectForKey:@"id"],DeviceTitleField.text,DeviceWattage.text];
+            
+            
+            NSString* urlTextEscaped = [ReportPoleStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+            [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
+            [request setHTTPShouldHandleCookies:NO];
+            [request setURL:[NSURL URLWithString:urlTextEscaped]];
+            [request setTimeoutInterval:10];
+            [request setHTTPMethod:@"POST"];
+            
+            NSData *imageData=[NSData dataWithData:UIImageJPEGRepresentation(thumbnail, 1)];
+            
+            if ( [imageData length] > 0)
+                //   if (pic_send ==1)
+            {
+                NSString *boundary = [NSString stringWithFormat:@"%0.9u",arc4random()];
+                NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary];
+                [request addValue:contentType forHTTPHeaderField:@"Content-Type"];
+                NSMutableData *body = [NSMutableData data];
+                [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+                [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"deviceimage\"; filename=\".jpg\"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+                [body appendData:[[NSString stringWithFormat:@"Content-Type: application/octet-stream\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+                [body appendData:imageData];
+                [body appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+                [request setHTTPBody:body];
+            }
+            NSError *error = nil;
+            NSURLResponse *response = nil;
+            NSData *returnData1 = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+            if(error)
+            {
+                return ;
+            }
+            
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                
+                NSString *responseString = [[NSString alloc] initWithData:returnData1 encoding:NSUTF8StringEncoding];
+                
+                if ([responseString isEqualToString:@"success"])
+                {
+                    UIAlertView *Alert=[[UIAlertView alloc]initWithTitle:@"Message" message:@"Device successfully added" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                    [Alert show];
+                    Alert.delegate=self;
+                    
+                    
+                    [self loadimage];
+                }
+                else {
+                    UIAlertView *Alert=[[UIAlertView alloc]initWithTitle:@"Error" message:@"Device has not been added" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                    [Alert show];
+                    Alert.delegate=self;
+                }
+                
+                
+                [spinner stopAnimating];
+            }];
+            
         }];
-        
-    }];
-   }
+    }
 }
 -(void)bill:(UIButton *)sender
 {
@@ -1182,17 +1203,17 @@
 {
     [DeviceAdditionPopUpView removeFromSuperview];
     
-
-
+    
+    
 }
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end
