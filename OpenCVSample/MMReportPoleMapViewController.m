@@ -565,10 +565,10 @@
          
          if ([loc_label.text length] >= 34) {
              
-             loc_label.font = [UIFont boldSystemFontOfSize:10];
+             loc_label.font = [UIFont boldSystemFontOfSize:13];
          }else{
              
-             loc_label.font = [UIFont boldSystemFontOfSize:14];
+             loc_label.font = [UIFont boldSystemFontOfSize:17];
          }
          
          

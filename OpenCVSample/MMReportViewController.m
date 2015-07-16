@@ -165,9 +165,7 @@
     [MainView addSubview:svccallbtn];
     
     
-    
     //inside button and text...............
-    
     
     insidebtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [insidebtn setFrame:CGRectMake(50.0f,190.0f, 50.0f, 40.0f)];
@@ -359,7 +357,6 @@
 
 -(void)call911:(UITapGestureRecognizer *)sender{
     
-    NSLog(@"Calling 911------->");
     
     NSString *deviceType = [UIDevice currentDevice].model;
     
@@ -367,7 +364,7 @@
     
     if ([deviceType isEqualToString:@"iPhone"]) {
         
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"telprompt://+919433509215"]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"telprompt://911"]];
         
     }else{
         
